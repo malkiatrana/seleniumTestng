@@ -1,0 +1,34 @@
+package APITesting;
+
+import static org.junit.Assert.assertThat;
+
+import org.hamcrest.Matchers;
+
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+
+public class JSONPostRequest{
+	
+	@Test()
+	public void Test_01_Amount_Transfer() {
+		
+		RestAssured.given().queryParam("fromAccountId", 13122).queryParam("toAccountId", 13344).queryParam("amount", "1")
+	.accept(ContentType.JSON).
+	post("https://parabank.parasoft.com/parabank/services/bank/transfer").
+	then().
+	statusCode(200).
+	log().all().assertThat().body(Matchers.equalTo("Successfully transferred $1 from account #13122 to account #13344"));
+	}
+
+	@Test()
+	public void Test_02() {
+		RestAssured.given().queryParam("customerId", 12212).queryParam("newAccountType", "CHECKING").queryParam("fromAccountId", "13677")
+		.accept(ContentType.JSON).
+		post("https://parabank.parasoft.com/parabank/services/bank/createAccount").
+		then().
+		statusCode(200).
+		log().all();//.assertThat().body(Matchers.equalTo("Successfully transferred $1 from account #13122 to account #13344"));
+		}
+		}
+	

@@ -1,10 +1,10 @@
-#Sun Aug 01 12:51:12 IST 2021
+#Sun Aug 01 13:34:53 IST 2021
 welcome.message=Welcome John Smith
 aiw.chromedriverpath=./chromedriver_win32/chromedriver.exe
 SAVINGS=19893
 user.name=john
 aiw.selectBrowser=chrome
-CHECKING=19782
+CHECKING=20004
 user.password=demo
 navigate.to.url=https\://parabank.parasoft.com/parabank/index.htm
 aiw.excelinputdata.path=./ExcelData/InputTestData.xlsx

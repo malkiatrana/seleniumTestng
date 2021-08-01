@@ -1,0 +1,44 @@
+package APITesting;
+
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertTrue;
+
+import org.apache.log4j.Logger;
+import org.hamcrest.Matchers;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import io.restassured.specification.RequestSpecification;
+import utility.ConfigReader;
+
+public class APITesting{
+	ConfigReader config;
+	
+	@Test()
+	public void Test_Amount_Transfer() {
+		config = new ConfigReader();
+		RestAssured.given().queryParam("fromAccountId", config.getSavingsAccountNumber()).queryParam("toAccountId", config.getCheckingAccountNumber()).queryParam("amount", "2")
+	.accept(ContentType.JSON).
+	post("https://parabank.parasoft.com/parabank/services/bank/transfer").
+	then().
+	statusCode(200).
+	log().all().assertThat().body(Matchers.equalTo("Successfully transferred $2 from account #"+config.getSavingsAccountNumber()+" to account #"+config.getCheckingAccountNumber()));
+	}
+
+    @Test
+	public void Get_AccountAmountBalance()
+    {
+    	config = new ConfigReader();
+    	RestAssured.given().queryParam("amount", 100.00)
+      .when()
+    	.get("https://parabank.parasoft.com/parabank/services/bank/accounts/20004/transactions/")
+    .then()
+    	.statusCode(200).log().body();
+}
+	
+		}
+	

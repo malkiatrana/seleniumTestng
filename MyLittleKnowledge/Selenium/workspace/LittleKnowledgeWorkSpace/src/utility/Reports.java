@@ -17,10 +17,6 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-/*
- * @author (Saurabh)
- *
- */
 public class Reports {
 
 	public static ExtentHtmlReporter htmlReporter;

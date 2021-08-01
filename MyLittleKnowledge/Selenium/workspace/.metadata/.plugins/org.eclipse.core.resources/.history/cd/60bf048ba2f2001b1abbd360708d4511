@@ -1,0 +1,44 @@
+package APITesting;
+
+import static io.restassured.RestAssured.given;
+
+import org.hamcrest.Matchers;
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.ResponseBody;
+import utility.ConfigReader;
+
+public class APITesting{
+	ConfigReader config;
+	
+	@Test()
+	public void Test_01_Amount_Transfer() {
+		config = new ConfigReader();
+		RestAssured.given().queryParam("fromAccountId", config.getSavingsAccountNumber()).queryParam("toAccountId", config.getCheckingAccountNumber()).queryParam("amount", "2")
+	.accept(ContentType.JSON).
+	post("https://parabank.parasoft.com/parabank/services/bank/transfer").
+	then().
+	statusCode(200).
+	log().all().assertThat().body(Matchers.equalTo("Successfully transferred $2 from account #"+config.getSavingsAccountNumber()+" to account #"+config.getCheckingAccountNumber()));
+	}
+
+@Test
+	public void Get_AccountInfo() {
+	ResponseBody resp = given().
+            when().get("https://parabank.parasoft.com/parabank/services/bank/accounts/"+config.getCheckingAccountNumber()).body();
+         //System.out.println("Get Response is: " + resp.asString());
+	}
+	/* Account creation is not working With API itself
+	@Test()
+	public void Test_02() {
+		RestAssured.given().queryParam("customerId", 12212).queryParam("newAccountType", "CHECKING").queryParam("fromAccountId", "13677")
+		.accept(ContentType.JSON).
+		post("https://parabank.parasoft.com/parabank/services/bank/createAccount").
+		then().
+		statusCode(200).
+		log().all();//.assertThat().body(Matchers.equalTo("Successfully transferred $1 from account #13122 to account #13344"));
+		}
+	*/
+		}
+	

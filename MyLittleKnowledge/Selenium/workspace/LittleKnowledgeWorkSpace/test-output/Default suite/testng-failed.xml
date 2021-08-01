@@ -3,16 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ParaBank_TestCases.AccountCreationTest_Checking">
+      <class name="APITesting.APITesting">
         <methods>
-          <include name="GetReport"/>
-          <include name="quitdriver"/>
-          <include name="ParaBank_CustomerCheckingTypeCreation"/>
-          <include name="setup"/>
-          <include name="TearDown"/>
-          <include name="StartReport"/>
+          <include name="GetAmountBalance_SavingsAccount"/>
         </methods>
-      </class> <!-- ParaBank_TestCases.AccountCreationTest_Checking -->
+      </class> <!-- APITesting.APITesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
