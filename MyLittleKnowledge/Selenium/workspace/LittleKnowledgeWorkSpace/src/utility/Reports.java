@@ -87,7 +87,7 @@ public class Reports {
 	@AfterClass
 	public void quitdriver()
 	{
-      driver.close();
+      driver.quit();
 		
 	}
 
