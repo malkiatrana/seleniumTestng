@@ -1,0 +1,32 @@
+package APITesting;
+
+
+
+
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+
+
+import utility.Reports;
+import APITestingPost.postState;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
+
+public class GetRequest {
+
+	@Test
+	public void Test_03() {
+		 
+		 String countryReport = 
+				when().
+				get("https://parabank.parasoft.com/parabank/services/bank").
+				then().
+				contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+				extract().
+				path("[0].Name");
+		}
+}

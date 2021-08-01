@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset //EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+
+<head>
+
+  <title>Test Results Report</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="description" content="TestNG unit test results." />
+
+	<script type="text/javascript">
+
+        function resizeIframe(obj) {
+            var iFrameHeight = Math.max(500, obj.contentWindow.document.body.scrollHeight + 40);
+            obj.style.height = iFrameHeight + 'px';
+        }
+    </script>
+</head>
+
+<body>
+                <header class="navbar navbar-light header" role="banner" ng-if=" !layout ">
+        <div class="col-md-12">
+            <div class="navbar-header navbar-layout col-md-2">
+                <a id="lnkLogo" class="navbar-brand" ui-sref="home">
+                    <img alt="Ai-Media" id="imgLogo">
+                </a>
+            </div>
+            <div class="navbar-layout col-md-10 pull-right">
+                <div>
+                    <a href="/">
+                        <img id="imgHome" alt="Submit" class="m-top-1 m-right-5" height="40" align="right">
+                    </a>
+                </div>
+                <div>
+                    <a href='javascript:void(0);'onclick='return GoBack();'>
+                        <input type="image" id="imgBack" class="m-top-1 m-right" alt="Submit" height="40" align="right">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+ <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-md-12"><div id="piechart"></div></div>
+            <div class="col-md-12">
+                <iframe id="ReportContainer1" src="overview.html" frameborder="0" style="position: bottom; height: 500px; width: 100%;" onload="resizeIframe(this)"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="modal fadein modal-backdrop" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="image-gallery-title"></h4>
+                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" style="margin-left: 630px !important;" aria-hidden="true" onclick="closeModal();">
+                        <span aria-hidden="true">close</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+
+                    <img id="image-gallery-image" class="img-responsive col-md-12" src="" style="height:600px;width:800px;">
+
+                </div>
+
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ 
+
+</body>
+
+ <script type="text/javascript">
+ var interval = "";
+ var currentLinks = document.getElementById('ReportContainer1').contentWindow.document.links;
+
+
+ 
+
+//To open Modal
+ function updateGallery(selector) {
+
+     let $sel = selector;
+
+     var modal = document.getElementById('image-gallery');
+
+     modal.style.display = "block";
+     $('#image-gallery-image').attr('src', selector.firstElementChild.getAttribute('src'));
+ }
+
+ //To close Modal
+ function closeModal() {
+     $('div.modal').hide();
+ }
+
+ 
+
+
+window.onload = function(){
+	ConfigureScriptAndCss();
+
+	
+	
+	document.getElementById('ReportContainer1').contentWindow.document.getElementById('systemInfo').style.display = "none";
+	
+	var iframe = document.getElementsByTagName('iframe')[0],
+    doc = iframe.contentDocument || iframe.contentWindow.document;
+
+	var links = doc.links;
+	var i = 0;
+	for (i = 0; i < links.length; i++) {
+		if(links[i].outerText == "Log Output"){
+			links[i].style.display = "none";
+			break;
+		}
+	}
+	
+	
+	
+	
+	//to draw google chart.
+	 DrawChar();
+	
+};
+
+
+ //Adding scripts to the  page.   
+function ConfigureScriptAndCss() {
+	if (window.location.href.indexOf("History") > 1) {
+        $('head').append('<link rel="stylesheet" href="../../../../Content/Bootstrap/bootstrap.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../../Content/Bootstrap/bootstrap-theme.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../../Content/app/bootstrap-overrides.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../../Content/app/default.css" type="text/css" />');
+        document.getElementById("imgLogo").src = "../../../../Content//Images//ai-media.jpg";
+        document.getElementById("imgHome").src = "../../../../Content//Images//Home.png";
+        document.getElementById("imgBack").src = "../../../../Content//Images//GoBack.png";
+	}
+    else {
+        $('head').append('<link rel="stylesheet" href="../../../Content/Bootstrap/bootstrap.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../Content/Bootstrap/bootstrap-theme.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../Content/app/bootstrap-overrides.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="../../../Content/app/default.css" type="text/css" />');
+        document.getElementById("imgLogo").src = "../../../Content//Images//ai-media.jpg";
+        document.getElementById("imgHome").src = "../../../Content//Images//Home.png";
+        document.getElementById("imgBack").src = "../../../Content//Images//GoBack.png";
+    }
+}
+
+function DrawChar() {
+	var el = document.getElementById('ReportContainer1').contentWindow.document.getElementsByClassName("totalLabel");
+	var pass = parseInt(el[0].parentElement.children[1].innerHTML);
+	var skip = parseInt(el[0].parentElement.children[2].innerHTML);
+	var fail = parseInt(el[0].parentElement.children[3].innerHTML);
+	
+	// Load google charts
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+	    var table = $("table tbody");
+	
+	    table.find('tr').each(function (i) {
+	        var $tds = $(this).find('td'),
+	            productId = $tds.eq(0).text(),
+	            product = $tds.eq(1).text(),
+	            Quantity = $tds.eq(2).text();
+	        // do something with productId, product, Quantity
+	        alert('Row ' + (i + 1) + ':\nId: ' + productId
+	              + '\nProduct: ' + product
+	              + '\nQuantity: ' + Quantity);
+	    });
+	    
+	// Draw the chart and set the chart values
+	function drawChart() {
+	  var data = google.visualization.arrayToDataTable([
+	  ['Tassassk', 'Coloumn value'],
+	  ['Pass (' + pass + ')', pass],
+	  ['Skipped (' + skip +')', skip],
+	  ['Fail (' + fail + ')',fail]
+	]);
+	  
+	  // Optional; add a title and set the width and height of the chart
+	  var options = 
+			{
+				titleTextStyle: {fontSize:'30'},
+				title:'',  
+				fontSize:'12', 
+				backgroundColor:'#FAFAFD',
+				is3D: true,
+				chartArea: {left: '20%', width: '100%', height: '70%'}, 
+				legend: {'position': 'right'},
+				sliceVisibilityThreshold :0,
+		 colors: ['#44aa44', '#ffaa00', '#FF0000']
+			};
+	 
+	  // Display the chart inside the <div> element with id="piechart"
+	  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	  
+	  chart.draw(data, options);
+	  }
+}
+
+
+//to display image in the modal.
+var imgInterval = setInterval(function () {
+    if (document.getElementById('ReportContainer1').contentWindow.document.getElementsByTagName('img').length >= 1) {
+        var iframe = document.getElementById("ReportContainer1");
+        var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        var a = document.getElementById('ReportContainer1').contentWindow.document.getElementsByTagName('img');
+        clearInterval(imgInterval);
+        $(a).wrap('<a class="thumbnail" href="#"  data-image-id="" onclick="window.parent.updateGallery(this);"  data-toggle="modal"   data-image=""  data-target="#image-gallery"></a>');
+
+        var html = "";
+
+        html += '<script>';
+
+        html += ' for(var i =0;i<document.getElementsByTagName("img").length;i++){document.getElementsByTagName("img")[i].setAttribute("width", "400px");document.getElementsByTagName("img")[i].setAttribute("height", "250px");}';
+
+        html += 'setTimeout(function () {'
+
+        html += 'loadGallery(true, "a.thumbnail");';
+
+        html += 'function loadGallery(setIDs, setClickAttr) { ';
+
+        html += 'var current_image,';
+        html += 'selector,';
+        html += 'counter = 0;';
+
+        html += 'if (setIDs == true) { ';
+
+        html += '[document.getElementsByTagName("a")[0].getAttribute("data-image-id")].forEach(function () {';
+        html += ' counter++;';
+        html += 'document.getElementsByTagName("a")[0].setAttribute("data-image-id",counter)});';
+
+        html += '}  };},3000);';
+        $(innerDoc.body).append(html);
+    }
+
+}, 200);
+
+
+
+function GoBack() {
+	if (document.getElementById('ReportContainer1').contentWindow.document.getElementsByClassName("resultsTable").length >= 1) {
+        window.location.reload();
+    }
+    else {
+       
+        document.getElementById('ReportContainer1').contentWindow.document.getElementById('systemInfo').style.display = "none";
+
+        var iframe = document.getElementsByTagName('iframe')[0],
+     doc = iframe.contentDocument || iframe.contentWindow.document;
+
+        var links = doc.links;
+        for (var i = 0; i < links.length; i++) {
+            if (links[i].outerText == "Log Output") {
+                links[i].style.display = "none";
+                break;
+            }
+        }
+    }
+    window.history.back();
+}
+  </script>
+        

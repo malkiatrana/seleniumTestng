@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package APITesting;
+
+import static io.restassured.RestAssured.given;
+
+import org.testng.annotations.Test;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.ResponseBody;
+
+/**
+ * @author Malkiat
+ *
+ *
+ */
+public class getonly {
+	@Test
+	public void Test_01() {
+		
+	ResponseBody resp = given().
+            when().get("https://parabank.parasoft.com/parabank/services/bank/login/john/demo");
+         
+System.out.println("Get Response is: " + resp.asString());
+}}

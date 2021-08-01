@@ -1,0 +1,72 @@
+package AIW_Customer_LiveBooking_TestCases;
+
+/**
+ * @Author Saurabh
+ *
+ */
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+//import AIW_Customer_LiveBooking_Pages.LiveCustomer_Login;
+import Library.ExcelDataConfig;
+import utility.BrowserFactory;
+import utility.ConfigReader;
+import utility.Reports;
+
+	public class LiveCustomer_CustomerLogin extends Reports {
+
+		ConfigReader config;
+
+		@BeforeTest
+		public void setup()
+
+		{
+			config = new ConfigReader();
+			// This will launch browser and specific url
+			driver = BrowserFactory.startBrowser(config.getBrowser(),
+					                    config.getCustomerURL());
+			driver.manage().timeouts().implicitlyWait(13, TimeUnit.SECONDS);
+			System.out.println("Setup is Ready");
+		}
+
+		@Test(dataProvider = "LoginData")
+		public void LiveCustomerLogin(String username, String password) throws InterruptedException, Exception {
+			config = new ConfigReader();
+			Report = extent.createTest("check Valid user", "Test Case 01");
+			
+			// Created Page Object using Page Factory
+			LiveCustomer_Login login_page = PageFactory
+					.initElements(driver, LiveCustomer_Login.class);
+		// Call the method
+			//login_page.custlogintest(username, password);
+			Thread.sleep(5000);
+			Assert.assertTrue(driver.getTitle().equalsIgnoreCase("Ai-Media Customer | Current Bookings"),"Unable to Login - FAILED");
+			System.out.println("Logged In Sucessfully - PASSED");
+		}
+		
+		@DataProvider(name = "LoginData")
+		public Object[][] passdata() {
+			config = new ConfigReader();
+			ExcelDataConfig conf = new ExcelDataConfig(config.getExcelData());
+			int rows = conf.getRowCount(0);
+			// Create 2 D array and pass row and columns
+			Object[][] data = new Object[rows][2];
+
+			// This will run a loop and each iteration it will fetch new row
+			for (int i = 0; i < rows; i++) {
+
+				// Fetch first row username from first sheet
+				data[i][0] = conf.getData(0, i, 0);
+				// Fetch second column password from first sheet
+				data[i][1] = conf.getData(0, i, 1);
+
+			}
+			return data;
+		}
+
+	}
+
+

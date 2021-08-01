@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Customer Portal Healthcheck" preserve-order="true">
+<listeners>
+	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+	<listener class-name="utility.CopyFilestoDirectories">
+          <parameter name="HistoryFolderLocation" value="\\Report-Stage\\AIW-Healthcheck"></parameter>
+      </listener>
+	<listener class-name="utility.TestStatistics">
+	    <parameter name="ResultSaveAt" value="..\\AIWorld_TestScripts\\Reports\\ResultCount_Healthcheck.txt"></parameter>
+	     <parameter name="ResultSaveAtQA" value="..\\AIWorld_TestScripts\\Reports\\ResultCount_QAHealthcheck.txt"></parameter>
+	</listener>
+ </listeners>
+ 
+ <test name="Customer portal Signup">
+    <classes>
+      <class name="AIW_Customer_Testcase.Customer_emailsignup"/>
+    </classes>
+  </test> 
+    <!-- 
+  <test name="Facebook login check">
+    <classes>
+      <class name="AIW_Customer_Testcase.Facebook_login"/>
+    </classes>
+  </test> 
+ 
+  <test name="Linking the Facebook Account">
+    <classes>
+      <class name="AIW_Customer_Testcase.LinkFB_account"/>
+    </classes>
+  </test> 
+  
+  <test name="Customer Live booking">
+    <classes>
+      <class name="AIW_Customer_Testcase.Customer_booking"/>
+    </classes>
+  </test> 
+
+  <test name="Edit the booking details">
+    <classes>
+      <class name="AIW_Customer_Testcase.Edit_bookingdetails"/>
+    </classes>
+  </test> 
+  
+  <test name="Customer booking title get">
+    <classes>
+      <class name="AIW_Customer_Testcase.Customer_booking_title"/>
+    </classes>
+  </test> 
+  
+  <test name="Manual file booking">
+    <classes>
+      <class name="AIW_Customer_Testcase.Manual_Config_Booking"/>
+    </classes>
+  </test> 
+  
+  <test name="Change Facebook Destination">
+    <classes>
+      <class name="AIW_Customer_Testcase.Change_fbdestination"/>
+    </classes>
+  </test>
+  
+  <test name="Insert the Facebook Destination">
+    <classes>
+      <class name="AIW_Customer_Testcase.Insert_fbdestination"/>
+    </classes>
+  </test> 
+  
+  <test name="Customer file upload">
+    <classes>
+      <class name="AIW_Customer_Testcase.Customerfileup"/>
+    </classes>
+  </test> 
+  
+  <test name="Customer booking cancel">
+    <classes>
+      <class name="AIW_Customer_Testcase.CustomerBooking_Cancel"/>
+    </classes>
+  </test> 
+  
+  <test name="Add the credit card information">
+    <classes>
+      <class name="AIW_Customer_Testcase.Add_creditcardinfo"/>
+    </classes>
+  </test> 
+    
+  <test name="Remove the credit card information">
+    <classes>
+      <class name="AIW_Customer_Testcase.Remove_creditcardinfo"/>
+    </classes>
+  </test> 
+  
+  <test name="Delete the Facebook Account">
+    <classes>
+      <class name="AIW_Customer_Testcase.DeleteFB_account"/>
+    </classes>
+  </test>
+  
+  <test name="Edit the Account Details">
+    <classes>
+      <class name="AIW_Customer_Testcase.Edit_account"/>
+    </classes>
+  </test> 
+  
+  <test name="Offline Customer Login check">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.AIW_Offline_Customer_Login"/>
+    </classes>
+  </test> 
+  
+  <test name="Manual File Order">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Manual_File_Order"/>
+    </classes>
+  </test> 
+  
+  <test name="Paste Link Order check">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.PasteLinkOrder"/>
+    </classes>
+  </test>  
+  
+  <test name="Edit the Link order">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.EditLinkOrder"/>
+    </classes>
+  </test> 
+  
+    <test name="Link the Kaltura Account">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Link_Kaltura_Account"/>
+    </classes>
+  </test> 
+  
+  <test name="Kaltura Order check">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Kaltura_Order"/>
+    </classes>
+  </test> 
+  <test name="Cance the order">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Cancel_Order"/>
+    </classes>
+  </test>
+  
+  <test name="Test 22">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Content_Download"/>
+    </classes>
+  </test> Test 
+   
+  <test name="Test 23 ">
+    <classes>
+      <class name="AIW_Offline_Customer_Testcase.Edit_Content"/>
+    </classes>
+  </test> Test  -->
+
+   
+     
+</suite> <!-- Suite -->

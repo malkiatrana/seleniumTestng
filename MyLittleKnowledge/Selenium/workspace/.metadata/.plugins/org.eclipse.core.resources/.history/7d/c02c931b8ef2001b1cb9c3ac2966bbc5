@@ -1,0 +1,139 @@
+package ParaBank_Pages;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import utility.ConfigReader;
+import utility.ConfigWriter;
+import utility.Reports;
+import utility.Utility;
+
+
+public class BillPay extends Reports {
+	ConfigReader config;
+	ConfigWriter configwriter;
+	WebDriver driver;
+
+	public BillPay(WebDriver ldriver) {
+		this.driver = ldriver;
+	}
+	
+	@FindBy(how = How.CSS, using = "a[href=\"/parabank/billpay.htm\"]")
+	WebElement BillPayLink;
+	
+	@FindBy(how = How.CSS, using = "input[type='submit']")
+	WebElement SendPaymentButton;
+	
+	String TextBoxName="input[ng-model='%s']";
+	
+	@FindBy(how = How.ID, using = "accountId")
+	WebElement AccountPage;
+	
+	@FindBy(how = How.CSS, using = "div[ng-show='showResult'] span[id='payeeName']")
+	WebElement ToAccount;
+	
+	@FindBy(how = How.CSS, using = "div[ng-show='showResult'] span[id='fromAccountId']")
+	WebElement FromAccount;
+	
+	@FindBy(how = How.CSS, using = "[id='transactionTable'] [class=ng-binding]")
+	WebElement FundTransferText;
+	
+	// This function is used to login into application for live videos
+	public void billypay() throws Exception {
+		
+		Logger log = Logger.getLogger(Logger.class.getName());
+		PropertyConfigurator.configure("Configuration/Log4j.properties");
+		config = new ConfigReader();
+		configwriter = new ConfigWriter();
+		BillPayLink.click();
+		Utility.checkPageIsReady();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		
+		var name = String.format(TextBoxName, "payee.name");
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(name))));
+		driver.findElement(By.cssSelector(name)).sendKeys(config.getCheckingAccountNumber());
+		
+		var address = String.format(TextBoxName, "payee.address.street");
+		driver.findElement(By.cssSelector(address)).sendKeys("#12, sec 89");
+		
+		var city = String.format(TextBoxName, "payee.address.city");
+		driver.findElement(By.cssSelector(city)).sendKeys("jalandhar");
+		
+		var state = String.format(TextBoxName, "payee.address.state");
+		driver.findElement(By.cssSelector(state)).sendKeys("punjab");
+		
+		var pin = String.format(TextBoxName, "payee.address.zipCode");
+		driver.findElement(By.cssSelector(pin)).sendKeys("12665");
+		
+		var selector = String.format(TextBoxName, "payee.phoneNumber");
+		driver.findElement(By.cssSelector(selector)).sendKeys("7845656665");
+		
+		var account = String.format(TextBoxName, "payee.accountNumber");
+		driver.findElement(By.cssSelector(account)).sendKeys(config.getCheckingAccountNumber());
+		
+		var verifyaccount = String.format(TextBoxName, "verifyAccount");
+		driver.findElement(By.cssSelector(verifyaccount)).sendKeys(config.getCheckingAccountNumber());
+		
+		var amount = String.format(TextBoxName, "amount");
+		driver.findElement(By.cssSelector(amount)).sendKeys("100");
+		
+		 Select fromAccount= new Select(driver.findElement(By.cssSelector("[ng-model='accountId']")));
+		 fromAccount.selectByValue(config.getSavingsAccountNumber());
+		 SendPaymentButton.click();
+		 wait.until(ExpectedConditions.visibilityOf(ToAccount));
+	
+		 Assert.assertEquals(ToAccount.getText(), config.getCheckingAccountNumber());
+		 
+		 driver.get("https://parabank.parasoft.com/parabank/activity.htm?id="+config.getCheckingAccountNumber());
+		 wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[ng-controller='AccountDetailsCtrl']"))));
+		 
+		 List<WebElement> elements =driver.findElements((By) FundTransferText);
+		  
+		 for(WebElement item: elements)
+		 {
+			 if(item.getText().contains("Funds Transfer Received"))
+			 {
+				 Assert.assertEquals(driver.findElement(By.cssSelector("[ng-if='transaction.type=='Credit'")).getText(), "$100.00");	 
+				 
+			 }
+			 
+		 }
+		 
+		 Assert.assertEquals(driver.findElement(By.cssSelector("[id='transactionTable'] [class=ng-binding]")).getText(), "Funds Transfer Received");
+		 
+		 
+		 driver.get("https://parabank.parasoft.com/parabank/activity.htm?id="+config.getSavingsAccountNumber());
+		 wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("[ng-controller='AccountDetailsCtrl']"))));
+		 
+		 Assert.assertEquals(driver.findElement(By.cssSelector("[id='transactionTable'] [class=ng-binding]")).getText(), "Bill Payment to malkiat");
+		 Assert.assertEquals(driver.findElement(By.cssSelector("[ng-if='transaction.type=='Debit'")).getText(), "$100.00");
+		 
+		 
+	  //  Select accountTypeDrop= new Select(driver.findElement(By.id("type")));
+	 //   accountTypeDrop.selectByVisibleText(accountType);
+	//    Select fromAccount= new Select(driver.findElement(By.id("fromAccountId")));
+	//    fromAccount.selectByIndex(0);
+	    //JavascriptExecutor executor = (JavascriptExecutor)driver;
+	   // new Actions(driver).moveToElement(OpenNewAccount_Button).perform();
+	  //  executor.executeScript("document.getElementByClass('button').click();");
+	    //executor.executeScript("arguments[0].click();", OpenNewAccount_Button);
+	   }
+}
+

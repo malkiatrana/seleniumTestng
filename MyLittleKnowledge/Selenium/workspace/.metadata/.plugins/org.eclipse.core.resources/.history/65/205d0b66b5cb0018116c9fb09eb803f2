@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LiveCustomer-Booking" >
+     <listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+   
+      <listener class-name="utility.TestStatistics">
+          <parameter name="ResultSaveAt" value=".//Reports//ResultCount_LiveCustomerBooking.txt"></parameter>
+              <parameter name="ResultSaveAtQA" value=".//Reports//ResultCount_QALiveCustomerBooking.txt"></parameter>
+      </listener>
+    
+  </listeners>
+   <test name="Verify that Live Booking tab opened successfully">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingNowTab"/>
+    </classes>
+    </test> 
+    
+     <test name="Verify that user is navigated to booking request page">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingRequestpage"/>
+    </classes>
+ 
+    </test>
+       
+     <test name="Verify that user is navigated to booking request page">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_IhavereadandCreditCardCheckpresenet"/>
+    </classes>
+ 
+    </test>
+    
+    
+     <test name="Verify that user is able to “Save” preparatory material when manual configuration is not given.">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_AddPreparationMaterialwithNoManualConfiguration"/>
+    </classes>
+    
+    </test> 
+    
+       <test name="Verify that user is able to “Save” preparatory material when manual configuration is given.">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_AddPreparationMaterialManualConfiguration"/>
+    </classes>
+    
+    </test> 
+   <test name="Verify that user is able to provide post details in a booking">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_PostDetailsoneditbooking"/>
+    </classes>
+    
+    </test> 
+   
+    
+ 
+ 
+     <test name="Verify that user is navigated to booking now tab check">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingTabOpenedCheck"/>
+    </classes>
+    
+    </test> 
+  
+    <test name="User is able to provide phone number">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_PhoneNumber"/>
+    </classes>
+    
+    </test> 
+     <test name="User is able to add Preparation material in the live booking with facebook login">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCasese.LiveCustomer_AddPreparatinoMaterial"/>
+    </classes>
+    
+    </test> 
+   
+  
+  
+   <test name="User is able to pick date from calender date picker">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_PickDatefromCalenderClick"/>
+    </classes>
+    
+    </test> 
+    
+    
+   <test name="User is able to select Start time of the live booking">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_PickTimeStart"/>
+    </classes>
+    
+    </test> 
+    
+    
+      <test name="Verify that user is able to select an existing destination">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_SelectExistingDestination"/>
+    </classes>
+    
+    </test> 
+    
+      <test name="User is able to select a timezone">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_SelectTimezone"/>
+    </classes>
+    
+    </test> 
+    
+    <test name="User is able to click and close the choose destination window">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_ClickandCloseChooseDestination"/>
+    </classes>
+    
+    </test> 
+    
+     
+      <test name="User is able to login and do a booking with facebook user">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_FacebookBookingRequestpage"/>
+    </classes>
+    
+    </test> 
+    
+          <test name="User is able to booking with later adding the manual configurations">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingwithLateraddingManualConfiguration"/>
+    </classes>
+    
+    </test> 
+    
+              <test name="User is able to booking with later manual configurations">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingwithManualConfiguration"/>
+    </classes>
+    
+    </test>
+    
+    
+    
+         <test name="User is able to booking with credit card details">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_CreditCardDetailsforLiveBooking"/>
+    </classes>
+    
+    </test>
+    
+    
+    
+         <test name="User is able to select a new destination">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_SelectNewDestination"/>
+    </classes>
+    
+    </test>
+    
+     
+    
+         <test name="User is able to upload a file">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_UploadfileonBooking"/>
+    </classes>
+  
+    </test> 
+  
+        <test name="User is able to select the duration">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_DurationSelect"/>
+    </classes>
+    
+    </test> 
+     
+    
+    
+      
+    
+    
+    
+     
+</suite> <!-- LiveCustomer_Booking -->
+
+
+
+
+
+
+
+
+
+

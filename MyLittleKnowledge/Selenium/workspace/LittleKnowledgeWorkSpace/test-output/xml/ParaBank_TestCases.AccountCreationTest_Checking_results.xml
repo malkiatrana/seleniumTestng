@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test 1"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="23.555">
+  <properties />
+  
+  
+            <testcase name="ParaBank_CustomerCheckingTypeCreation" time="23.555" classname="ParaBank_TestCases.AccountCreationTest_Checking" />
+      
+</testsuite>

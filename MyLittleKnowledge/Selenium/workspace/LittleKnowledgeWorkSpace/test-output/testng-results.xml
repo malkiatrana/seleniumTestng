@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-08-01T12:50:10 IST" name="Parabank Test Cases" finished-at="2021-08-01T12:51:48 IST" duration-ms="97997">
+    <groups>
+    </groups>
+    <test started-at="2021-08-01T12:50:10 IST" name="Test 1" finished-at="2021-08-01T12:50:44 IST" duration-ms="34722">
+      <class name="ParaBank_TestCases.AccountCreationTest_Checking">
+        <test-method is-config="true" signature="setup()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Checking@27ff5d15]" started-at="2021-08-01T12:50:10 IST" name="setup" finished-at="2021-08-01T12:50:20 IST" duration-ms="10942" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="ParaBank_CustomerCheckingTypeCreation()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Checking@27ff5d15]" started-at="2021-08-01T12:50:21 IST" name="ParaBank_CustomerCheckingTypeCreation" finished-at="2021-08-01T12:50:44 IST" duration-ms="23555" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ParaBank_CustomerCheckingTypeCreation -->
+        <test-method is-config="true" signature="GetReport(org.testng.ITestResult)[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Checking@27ff5d15]" started-at="2021-08-01T12:50:44 IST" name="GetReport" finished-at="2021-08-01T12:50:44 IST" duration-ms="11" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ParaBank_CustomerCheckingTypeCreation status=SUCCESS method=AccountCreationTest_Checking.ParaBank_CustomerCheckingTypeCreation()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Checking@27ff5d15] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetReport -->
+        <test-method is-config="true" signature="quitdriver()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Checking@27ff5d15]" started-at="2021-08-01T12:50:44 IST" name="quitdriver" finished-at="2021-08-01T12:50:44 IST" duration-ms="139" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitdriver -->
+      </class> <!-- ParaBank_TestCases.AccountCreationTest_Checking -->
+    </test> <!-- Test 1 -->
+    <test started-at="2021-08-01T12:50:44 IST" name="Test 2" finished-at="2021-08-01T12:51:18 IST" duration-ms="33263">
+      <class name="ParaBank_TestCases.AccountCreationTest_Savings">
+        <test-method is-config="true" signature="setup()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Savings@5403f35f]" started-at="2021-08-01T12:50:44 IST" name="setup" finished-at="2021-08-01T12:50:56 IST" duration-ms="11331" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="ParaBank_CustomerSavingsTypeCreation()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Savings@5403f35f]" started-at="2021-08-01T12:50:56 IST" name="ParaBank_CustomerSavingsTypeCreation" finished-at="2021-08-01T12:51:17 IST" duration-ms="21600" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ParaBank_CustomerSavingsTypeCreation -->
+        <test-method is-config="true" signature="GetReport(org.testng.ITestResult)[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Savings@5403f35f]" started-at="2021-08-01T12:51:17 IST" name="GetReport" finished-at="2021-08-01T12:51:17 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ParaBank_CustomerSavingsTypeCreation status=SUCCESS method=AccountCreationTest_Savings.ParaBank_CustomerSavingsTypeCreation()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Savings@5403f35f] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetReport -->
+        <test-method is-config="true" signature="quitdriver()[pri:0, instance:ParaBank_TestCases.AccountCreationTest_Savings@5403f35f]" started-at="2021-08-01T12:51:17 IST" name="quitdriver" finished-at="2021-08-01T12:51:18 IST" duration-ms="323" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitdriver -->
+      </class> <!-- ParaBank_TestCases.AccountCreationTest_Savings -->
+    </test> <!-- Test 2 -->
+    <test started-at="2021-08-01T12:51:18 IST" name="Test 3" finished-at="2021-08-01T12:51:48 IST" duration-ms="29921">
+      <class name="ParaBank_TestCases.BillTransaction">
+        <test-method is-config="true" signature="StartReport()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:50:09 IST" name="StartReport" finished-at="2021-08-01T12:50:10 IST" duration-ms="97" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StartReport -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:51:18 IST" name="setup" finished-at="2021-08-01T12:51:29 IST" duration-ms="11621" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="ParaBank_BillPayTransaction()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:51:29 IST" name="ParaBank_BillPayTransaction" finished-at="2021-08-01T12:51:47 IST" duration-ms="17961" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ParaBank_BillPayTransaction -->
+        <test-method is-config="true" signature="GetReport(org.testng.ITestResult)[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:51:47 IST" name="GetReport" finished-at="2021-08-01T12:51:47 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ParaBank_BillPayTransaction status=SUCCESS method=BillTransaction.ParaBank_BillPayTransaction()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetReport -->
+        <test-method is-config="true" signature="quitdriver()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:51:47 IST" name="quitdriver" finished-at="2021-08-01T12:51:48 IST" duration-ms="332" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitdriver -->
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:ParaBank_TestCases.BillTransaction@581ac8a8]" started-at="2021-08-01T12:51:48 IST" name="TearDown" finished-at="2021-08-01T12:51:48 IST" duration-ms="332" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TearDown -->
+      </class> <!-- ParaBank_TestCases.BillTransaction -->
+    </test> <!-- Test 3 -->
+  </suite> <!-- Parabank Test Cases -->
+</testng-results>

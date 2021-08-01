@@ -1,0 +1,10 @@
+#Sun Aug 01 12:35:28 IST 2021
+aiw.chromedriverpath=./chromedriver_win32/chromedriver.exe
+aiw.selectBrowser=chrome
+CHECKING=19449
+aiw.excelinputdata.path=./ExcelData/InputTestData.xlsx
+user.password=demo
+welcome.message=Welcome John Smith
+user.name=john
+navigate.to.url=https\://parabank.parasoft.com/parabank/index.htm
+SAVINGS=17451

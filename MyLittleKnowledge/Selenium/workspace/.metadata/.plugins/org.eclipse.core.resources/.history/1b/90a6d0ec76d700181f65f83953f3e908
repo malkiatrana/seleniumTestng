@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset //EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+<a href='#'>
+  <input type="image" src="\..\\..\\..\\Images\\ai-letters-big.png\" alt="Submit" width="98" height="50" style="margin-left:20px; margin-top:20px;">
+</a><a href="/"><img src="\..\\..\\..\\Images\\Home.png\" alt="Submit" height="50" align="right" style="margin-right:58px; margin-top:20px;"></a> 
+<a href='#' onclick='window.history.back();'>
+  <input type="image" src="GoBack.png" alt="Submit" height="50" align="right" style="margin-right:3px; margin-top:20px;\">
+</a>
+
+
+  <title>Test Results Report</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="description" content="TestNG unit test results." />
+
+	
+</head>
+
+<body  bgcolor="#E6E6FA">
+
+<div id="piechart" style="background-color:#E6E6FA" style="display: block; margin: 0 auto; width:400px; height:300px;"></div>
+<iframe id="ReportContainer1" src="overview.html"  frameborder="0"  style="position: bottom; height: 500px; width: 100%;" onload="resizeIframe(this)"></iframe>
+
+ 
+<script type="text/javascript">
+function resizeIframe(obj) {
+	var iFrameHeight = Math.max(500, obj.contentWindow.document.body.scrollHeight + 40);
+	obj.style.height = iFrameHeight + 'px';
+}
+  
+window.onload = function(){
+	var el = document.getElementById('ReportContainer1').contentWindow.document.getElementsByClassName("totalLabel");
+	var pass = parseInt(el[0].parentElement.children[1].innerHTML);
+	var skip = parseInt(el[0].parentElement.children[2].innerHTML);
+	var fail = parseInt(el[0].parentElement.children[3].innerHTML);
+	
+	document.getElementById('ReportContainer1').contentWindow.document.getElementById('systemInfo').style.display = "none";
+	
+	var iframe = document.getElementsByTagName('iframe')[0],
+    doc = iframe.contentDocument || iframe.contentWindow.document;
+
+	var links = doc.links;
+	var i = 0;
+	for (i = 0; i < links.length; i++) {
+		if(links[i].outerText == "Log Output"){
+			links[i].style.display = "none";
+			break;
+		}
+	}
+	
+	// Load google charts
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+	    var table = $("table tbody");
+	
+	    table.find('tr').each(function (i) {
+	        var $tds = $(this).find('td'),
+	            productId = $tds.eq(0).text(),
+	            product = $tds.eq(1).text(),
+	            Quantity = $tds.eq(2).text();
+	        // do something with productId, product, Quantity
+	        alert('Row ' + (i + 1) + ':\nId: ' + productId
+	              + '\nProduct: ' + product
+	              + '\nQuantity: ' + Quantity);
+	    });
+	// Draw the chart and set the chart values
+	function drawChart() {
+	  var data = google.visualization.arrayToDataTable([
+	  ['Tassassk', 'Coloumn value'],
+	  ['Pass (' + pass + ')', pass],
+	  ['Skipped (' + skip +')', skip],
+	  ['Fail (' + fail + ')',fail]
+	]);
+	  // Optional; add a title and set the width and height of the chart
+	  var options = 
+			{
+				titleTextStyle: {fontSize:'30'},
+				title:'',  
+				fontSize:'12', 
+				backgroundColor:'#E6E6FA',
+				is3D: true,
+				chartArea: {left:'35%', width:'27%', height: '100%'}, 
+				legend: {'position': 'right'},
+				sliceVisibilityThreshold :0,
+		 colors: ['#44aa44', '#ffaa00', '#FF0000']
+			};
+	 
+	  // Display the chart inside the <div> element with id="piechart"
+	  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	  
+	  chart.draw(data, options);
+	  }
+};
+  </script>
+
+</body>
+</html>
+        

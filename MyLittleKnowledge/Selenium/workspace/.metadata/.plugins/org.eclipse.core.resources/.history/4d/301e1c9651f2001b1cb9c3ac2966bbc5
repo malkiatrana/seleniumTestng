@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [LiveCustomer-Booking]" guice-stage="DEVELOPMENT">
+  <parameter name="ResultSaveAt" value=".//Reports//ResultCount_LiveCustomerBooking.txt"/>
+  <parameter name="ResultSaveAtQA" value=".//Reports//ResultCount_QALiveCustomerBooking.txt"/>
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    <listener class-name="utility.SkipSuite"/>
+    <listener class-name="utility.TestStatistics"/>
+  </listeners>
+  <test name="Verify that Live Booking tab opened successfully(failed)">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingNowTab">
+        <methods>
+          <include name="LiveCustomer_Bookingnowtab_TC011"/>
+          <include name="setup"/>
+          <include name="setup"/>
+          <include name="quitdriver"/>
+          <include name="quitdriver"/>
+          <include name="StartReport"/>
+          <include name="GetReport"/>
+          <include name="GetReport"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingNowTab -->
+    </classes>
+  </test> <!-- Verify that Live Booking tab opened successfully(failed) -->
+  <test name="Verify that Live Booking tab opened successfulddddly(failed)">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingNowTab">
+        <methods>
+          <include name="LiveCustomer_Bookingnowtab_TC011"/>
+          <include name="setup"/>
+          <include name="setup"/>
+          <include name="quitdriver"/>
+          <include name="quitdriver"/>
+          <include name="StartReport"/>
+          <include name="GetReport"/>
+          <include name="GetReport"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- AIW_Customer_LiveBooking_TestCases.LiveCustomer_BookingNowTab -->
+    </classes>
+  </test> <!-- Verify that Live Booking tab opened successfulddddly(failed) -->
+</suite> <!-- Failed suite [LiveCustomer-Booking] -->

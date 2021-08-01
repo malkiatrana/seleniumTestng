@@ -1,0 +1,407 @@
+//package AIW_Customer_Signup_Pages;
+//
+//import java.awt.AWTException;
+//import java.io.File;
+//import java.io.FileInputStream;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.util.Properties;
+//import java.util.concurrent.TimeUnit;
+//import org.apache.log4j.Logger;
+//import org.apache.log4j.PropertyConfigurator;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.support.FindBy;
+//import org.openqa.selenium.support.How;
+//import org.openqa.selenium.support.ui.ExpectedCondition;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.Select;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.testng.Assert;
+//import org.testng.annotations.Test;
+//import org.testng.internal.annotations.ExpectedExceptionsAnnotation;
+//import utility.ConfigReader;
+//import utility.ConfigValidationsReader;
+//import utility.Utility;
+//
+//
+///**
+// * @author Rahul Soni
+// *
+// */
+//public class LiveCustomer_Signup {
+//	ConfigReader config = new ConfigReader();
+//	ConfigValidationsReader CVR;
+//	 WebDriver driver;
+//	
+//	@Test
+//	public LiveCustomer_Signup(WebDriver ldriver) {
+//		this.driver = ldriver;
+//	
+//		
+//	}
+//	//SignUp page element Starts here
+//	@FindBy(how = How.XPATH, using = "//div[2]/a")
+//	WebElement Signup_Button;
+//    
+//	@FindBy(how = How.XPATH, using = "//input[@id='txtFirstName']")
+//	WebElement Signup_Firstname;
+//	
+//	@FindBy(how = How.XPATH, using = "//input[@name='lastName']")
+//	WebElement Signup_Lastname;
+//	
+//	@FindBy(how = How.XPATH, using = "//input[@name='email' and @id='txtEmail']")
+//	WebElement Signup_Emailaddress;
+//	
+//	@FindBy(how = How.XPATH, using = "//input[@name='password' and @id='txtPassword']")
+//	WebElement Signup_Password;
+//	
+//	@FindBy(how = How.ID, using = "drpCountry")
+//	WebElement Signup_Countrydrpdown;
+//	
+//	@FindBy(how = How.XPATH, using = "//input[@id='txtCompany' and @name='company']")
+//	WebElement Signup_Company;
+//	
+//	@FindBy(how = How.ID, using = "txtCountryCode")
+//	WebElement Signup_ISDcode;
+//	
+//	@FindBy(how = How.XPATH, using = "//input[@id='txtPhone' and @name='phone']")
+//	WebElement Signup_Phone;
+//	
+//	@FindBy(how = How.XPATH, using = "//div[5]/div/input")
+//	WebElement Chk_PrivacyPolicy;  // Privacy policy Check box.
+//	
+//	@FindBy(how = How.XPATH, using = "//div[6]/div/input")
+//	WebElement Chk_TermsandConditions;  // Terms and Conditions Check box.
+//	
+//	@FindBy(how = How.XPATH, using = "//button")
+//	WebElement Signup_Submitbutton;
+//	@FindBy(how = How.ID, using = "btnLive")
+//	WebElement AccountselectorIDLive;
+//	@FindBy(how = How.XPATH, using = "//h2")
+//	WebElement Signup_Text;
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[1]/div/div/div/div")
+//	WebElement Signup_Successpopup;
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[2]/section/div/div/div/div") //####
+//	WebElement Signup_EmailExist;
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[1]/div/div/div/div") 
+//	WebElement Signup_RegestrartionSuccesspopup;
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[1]/div/div/div/div/div/div/div[2]/p")
+//	WebElement Signup_RegistrationDone;
+//	
+//	@FindBy(how = How.XPATH, using = "//*[@id='btnOK']")
+//	WebElement OK_Button_On_Successful; 
+//	
+//	//Elements for Account Selector page 
+//	
+//	@FindBy(how = How.XPATH, using = "//button[@id='btnOffline']")
+//	WebElement OrderNow_Button_AccountSelector_Page;    // Order now button for Offline orders on 'Account Selector' page.
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[2]/section/section/div/div/div/div[2]/div[2]/div/div/div[1]/p")
+//	WebElement Texton_Offline_Frame;       // Text info for Offline selection order 
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[2]/section/section/div/div/div/div[2]/div[2]/div/div/div[1]/label")
+//	WebElement Textlabelon_Offline_Frame;        //'Recorded Audio' Text label on Offline Frame
+//	
+//	@FindBy(how = How.XPATH, using = "html/body/div[2]/section/section/div/div[1]/div/div/span")
+//	WebElement AddFilestext_forFilesSelection;    // Add files text For placing orders.
+//	
+//	@FindBy(how = How.XPATH, using = "//div[2]/div/center/div/p")
+//	WebElement Text_PasteLink;     // To verify Paste Link text on Orders Offline / Live  
+//		
+//	public void Customer_Signup() 
+//	{
+//		ConfigValidationsReader configvalidations;
+//		configvalidations = new ConfigValidationsReader();
+//		WebDriverWait wait = new WebDriverWait(driver, 100);
+//		Logger log = Logger.getLogger(Logger.class.getName());
+//		 PropertyConfigurator.configure("Configuration/Log4j.properties");
+//		 		 Utility.fluentwait(Signup_Button);
+//		 wait.until(ExpectedConditions.elementToBeClickable(Signup_Button));
+//		 Signup_Button.click();
+//	 log.info("Loginfo: Sign Up Button is clicked on Login page.");
+//	
+//	}
+//	
+//		public void Signupnew() throws Exception  {
+//			
+//			ConfigValidationsReader configvalidations;
+//			configvalidations = new ConfigValidationsReader();
+//			WebDriverWait wait = new WebDriverWait(driver, 100);
+//			Logger log = Logger.getLogger(Logger.class.getName());
+//			 PropertyConfigurator.configure("Configuration/Log4j.properties");
+//			 Utility.fluentwait(Signup_Text);
+//		 Assert.assertTrue(Signup_Text.isDisplayed());
+//		 log.info("Sign Up Text is verified on Sign up page using Assert command");
+//		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2")));
+//		 System.out.println("Syso: Sign up button is clicked.");
+//         //System.out.println("I want to apply an assert verifiecation that I am on Correct page.");
+//        // Assert.assertEquals(Signup_Text.getText(), "Sign Up", "Sign up label is Verified.");
+//        
+//        Utility.fluentwait(Signup_Firstname);
+//       Signup_Firstname.sendKeys(config.getFirstname());
+//       
+//       Utility.fluentwait(Signup_Lastname);
+//       Signup_Lastname.sendKeys(config.getlastname());
+//       
+//       Utility.fluentwait(Signup_Emailaddress);
+//       String email[] = config.getEmailAddress().split("@");       
+//       Date currentDate = new Date();
+//       SimpleDateFormat formatter = new SimpleDateFormat("yyMMddHHmmss");  
+//       String final_Email = email[0] + "+" + formatter.format(currentDate).toString() + "@" + email[1];
+//       File src = new File("./Configuration/config.property");
+//		FileInputStream in=null;
+//		in = new FileInputStream(src);
+//		Properties props = new Properties();
+//		props.load(in);
+//		in.close();
+//		FileOutputStream out=null;
+//		out = new FileOutputStream(src);
+//		    props.setProperty("NewRuntimeUser", final_Email);
+//		    props.store(out, null);
+//		    out.close();
+//       log.info("final_Email: " + final_Email);
+//       Signup_Emailaddress.sendKeys(final_Email); 
+//       
+//       Utility.fluentwait(Signup_Password);
+//       Signup_Password.sendKeys(config.getPassword());
+//       log.info("Till password fields it's working fine.");
+//       
+//       Utility.fluentwait(Signup_Countrydrpdown);
+//       Thread.sleep(1000);
+//       if(Signup_Countrydrpdown.getAttribute("value") == null) 
+//       {
+//       Signup_Countrydrpdown.sendKeys(config.getCountry());
+//       log.info("Country is selected in dropdown.");
+//       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//       }
+//     
+//       else
+//       {   
+//    	   log.info("Country is not selected.");
+//       }
+//       //wait.until(ExpectedConditions.attributeToBeNotEmpty(Signup_Countrydrpdown, "India"));
+//      // wait.until(ExpectedConditions.attributeToBe(Signup_Countrydrpdown, "name", "India"));
+//       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//       Signup_Countrydrpdown.sendKeys(config.getCountry());
+//       
+//       Utility.fluentwait(Signup_Company);
+//       Signup_Company.sendKeys(config.getCompany());
+//       log.info("Company name is entered from Config file.");
+//       
+//       Utility.fluentwait(Signup_Phone);
+//       Signup_Phone.sendKeys(config.getPhone());
+//       log.info("Phone number is entered.");
+//             
+//       Thread.sleep(2000);
+//       Chk_PrivacyPolicy.click();
+//              
+//      if(Chk_PrivacyPolicy.isSelected()) 
+//      {
+//    	Chk_TermsandConditions.click();
+//    	log.info("Terms and Conditions Check Box is clicked.");
+//      }else 
+//      {
+//    	  log.info("Privacy Poclicy check box is not visble.");
+//      }
+//       
+//       Utility.fluentwait(Signup_Submitbutton);
+//       Thread.sleep(1000);
+//            
+//       if(Signup_Phone.getAttribute("value") != null) 
+//       {
+////    	   try 
+////    	   {
+//    	   Signup_Submitbutton.click();
+//    	   log.info("Submit button is Clicked on SignUp page.");
+//		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/div/div/div")));   //check Visibility of Registration Successful pop Up
+//	       log.info("Registration Successfull popup is verified.");
+//	    //   -- //*[@id="btnOK"]    - Ok button on Registration successful Pop Up.
+//	       Assert.assertTrue(OK_Button_On_Successful.isDisplayed());
+//	       
+//    	   //}finally
+//    	  // {
+//    		  
+//    		   //Signup_Submitbutton.click();
+////    		   log.info("Submit button is Clicked on SignUp page.");
+////    		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/div/div/div")));   //check Visibility of Registration Successful pop Up
+////    	       log.info("Registration Successfull popup is verified.");
+//    	  // }          
+//        }
+//      // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//
+//      
+////       try {
+////        	Utility.capture("LiveCustomer_TC_Cust_Signup_002");
+////    	} catch (IOException e) {
+////    		// TODO Auto-generated catch block
+////    		e.printStackTrace();
+////    	} catch (InterruptedException e) {
+////    		// TODO Auto-generated catch block
+////    		e.printStackTrace();
+////    	} catch (AWTException e) {
+////    		// TODO Auto-generated catch block
+////    		e.printStackTrace();
+////    	}
+//      
+//   // Above Code under try catch block is Commented, i.e. To take the Screen Shot and capture image.   
+//            
+//    /*   if(driver.findElement(By.xpath("//div/div/div")).isDisplayed()) 
+//       {
+//    	   System.out.println("New user registration is completed.");
+//       }*/
+//      // driver.manage().timeouts().pageLoadTimeout(7, TimeUnit.SECONDS);
+//         
+//       //Signup_EmailExist.click();
+//       //log.info("Verify text on Pop up using AssertEquals command.");
+//                
+//                   
+//         } 
+//		
+//	public void EmailRegistered_Or_AlreadyExists() throws Exception	{
+//		WebDriverWait wait = new WebDriverWait(driver, 100);
+//		Logger log = Logger.getLogger(Logger.class.getName());
+//		 PropertyConfigurator.configure("Configuration/Log4j.properties");
+//		 //Thread.sleep(5000);
+//		 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//		
+//		 if(driver.getPageSource().contains("Email address already exists."))
+//		 {
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		       log.info("Sign up process is completed and Noted that Email is Already exist.");	 
+//		 } 
+//		
+//		else if((driver.getPageSource().contains("Registration was successful!")) &&  (driver.getPageSource().contains("Your account is ready to use.")))
+//		 {
+//			 log.info("Regestration sucessfull is running working.");   
+//			 Thread.sleep(3000);
+//			Utility.fluentwait(OK_Button_On_Successful);
+//			 OK_Button_On_Successful.click();
+//			 //Thread.sleep(9000);
+//			 
+//			 //Utility.fluentwait(Texton_Offline_Frame);
+//			 wait.until(ExpectedConditions.visibilityOf(Texton_Offline_Frame));
+//			 
+//               log.info("Registered user clicked on OK button of SUCCESS message.");
+//		       Assert.assertEquals(Texton_Offline_Frame.getText(), "Add closed captions to your recorded videos to improve search while also providing greater access.", "This Assert Condition is failed.");
+//		       log.info("Above assert condition is verified.");
+//		       
+//		       //Utility.fluentwait(OrderNow_Button_AccountSelector_Page);
+//			   wait.until(ExpectedConditions.visibilityOf(OrderNow_Button_AccountSelector_Page));
+//		       
+//		       OrderNow_Button_AccountSelector_Page.click();
+//		      // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//		     // wait.until(ExpectedConditions.visibilityOf(Text_PasteLink));
+//		       
+//               Assert.assertTrue(driver.getCurrentUrl().contains("recorded/offlineorders/index"), "Url isn't matched in this Assert Condition.");
+//		   // Utility.capture("LiveCustomer_TC_Cust_Signup_007");
+//		 
+//		 } }
+//		 
+//	
+//	
+//	public void CountryCode_04() throws InterruptedException
+//	{
+//	Logger log = Logger.getLogger(Logger.class.getName());
+//	PropertyConfigurator.configure("Configuration/Log4j.properties");
+//	WebDriverWait wait = new WebDriverWait(driver, 100);
+//	 Signup_Button.click();
+//	 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//	 //Thread.sleep(4000);
+//	 Signup_Countrydrpdown.sendKeys(config.getCountry());
+//	 //Signup_ISDcode.sendKeys(config.getISDCode());
+//	 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//	//Thread.sleep(5000);
+//	//Below two line of code is written to get the value from Country drop down.
+//    Select dropdown1 = new Select(Signup_Countrydrpdown); 
+//	dropdown1.selectByVisibleText(config.getCountry());
+//	
+//	 //This line of code is to get the value of Country ISD code from SignUp page.
+//	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//    String Countrycode= Signup_ISDcode.getAttribute("value");
+//    
+//	if(dropdown1.getFirstSelectedOption().getText().contains((config.getCountry())) && (Countrycode.contains((config.getISDCode()))))
+//	{
+//		log.info("Both Condition(Country & Country code) for ISD Code of India is verified: For Country code Verification.");
+//	}
+//	else 
+//	{
+//		log.info("Condition is applied for Non-India Country is selected.");
+//	}	
+//	}
+//	
+//	
+//	public void livecustomerSignupnew() throws Exception  {
+//		
+//		ConfigValidationsReader configvalidations;
+//		configvalidations = new ConfigValidationsReader();
+//		Logger log = Logger.getLogger(Logger.class.getName());
+//		 PropertyConfigurator.configure("Configuration/Log4j.properties");
+//	 Signup_Button.click();
+//	 log.info("Loginfo: Sign Up Button is clicked on Login page.");
+//	Thread.sleep(10000);
+//
+//    System.out.println("Syso: Sign up button is clicked.");
+//  
+//   System.out.println("I want to apply an assert verifiecation that I am on Correct page.");
+//    
+//    Assert.assertEquals(Signup_Text.getText(), "Sign Up", "Sign up label is Verified.");
+//    log.info("'Signup' Text is verified on Sign up page using Assert command");
+//   Signup_Firstname.sendKeys(config.getFirstname());
+//   //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+//   
+//   Signup_Lastname.sendKeys(config.getlastname());
+//   Signup_Emailaddress.sendKeys(config.getEmailAddress());
+//   Signup_Password.sendKeys(config.getPassword());
+//   log.info("Till password fields it's working fine.");
+//   driver.manage().timeouts().pageLoadTimeout(7, TimeUnit.SECONDS);
+//   
+//   Signup_Countrydrpdown.sendKeys(config.getCountry());
+//   Signup_Company.sendKeys(config.getCompany());
+//   log.info("Company name is entered from Config file.");
+//   Thread.sleep(4000);
+//   Signup_Phone.sendKeys(config.getPhone());
+//   Thread.sleep(4000);
+//   //driver.manage().timeouts().pageLoadTimeout(7, TimeUnit.SECONDS);
+//   Signup_Submitbutton.click();
+//   log.info("Submit button is Clicked on SignUp page.");
+//   Thread.sleep(5000);
+//	 OK_Button_On_Successful.click();
+//	 Thread.sleep(8000);
+////   WebDriverWait wait=new WebDriverWait(driver,50);
+////	wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
+////  Thread.sleep(8000);
+//  if(driver.getCurrentUrl().contains(configvalidations.AccountSelector())){
+//      AccountselectorIDLive.click();
+//	Thread.sleep(8000);
+//  }
+//	}
+//
+//
+//	public void CountryCode_05() throws InterruptedException
+//	{
+//	Logger log = Logger.getLogger(Logger.class.getName());
+//	PropertyConfigurator.configure("Configuration/Log4j.properties");
+//	WebDriverWait wait = new WebDriverWait(driver, 100);
+//	 Signup_Button.click();
+//	 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+//	 //Thread.sleep(4000);
+//	// wait.until(ExpectedConditions.elementToBeClickable(Signup_ISDcode));
+//	 Signup_ISDcode.sendKeys(config.getISDCode());
+//	 log.info("Country Code(+91) value is Entered in ISD Text box.");
+//	 //Thread.sleep(4000);
+//	 Utility.fluentwait(Signup_Countrydrpdown);
+//	 Signup_Countrydrpdown.sendKeys(config.getAUCountry());
+//	 //Thread.sleep(4000);
+//	 log.info("Now Country Name is selected as 'Australia' and It's Country code is '+44', that is different from India.");
+//	 
+//	}
+//
+//}

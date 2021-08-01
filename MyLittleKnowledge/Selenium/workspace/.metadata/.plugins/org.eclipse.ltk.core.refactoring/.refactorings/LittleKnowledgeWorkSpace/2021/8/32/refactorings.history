@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;LittleKnowledgeWorkSpace/src/ParaBank_TestCases/AccountCreationTest.java&apos; to &apos;AccountCreationTest_Checking.java&apos;" description="Rename resource &apos;AccountCreationTest.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/ParaBank_TestCases/AccountCreationTest.java" name="AccountCreationTest_Checking.java" stamp="1627799515237" updateReferences="true"/>
+</session>

@@ -1,0 +1,91 @@
+package utility;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.sun.tools.javac.util.StringUtils;
+
+import bsh.StringUtil;
+
+
+public class MyTestresults {
+
+	int passed=0;
+	int failed=0;
+	int skipped=0;
+	public String _resultSaveAt;
+	
+	public MyTestresults() {
+		
+	}
+	
+	public MyTestresults(String resultSaveAt) {
+		_resultSaveAt = resultSaveAt;
+		
+	}
+	
+	
+	public int getpassed() {
+		return this.passed;
+
+	}
+	
+
+	public int getfailed() {
+		return this.failed;
+
+	}
+
+	public int getskipped() {
+		return this.skipped;
+
+	}
+
+	public int totalTests() {
+		return  (this.passed + this.failed + this.skipped);
+
+	}
+
+	public void incrementpassed() {
+		this.passed++;
+	}
+
+	public void incrementfailed() {           
+           this.failed++;
+	}
+
+	public void incrementskipped() {
+		this.skipped++;
+	}
+	
+	public void CreateTestResultFile() throws IOException  {
+		
+		
+		if(_resultSaveAt == null || _resultSaveAt == "") {
+			System.out.println("_resultSaveAt is null");
+		}
+		else {	
+			File fil= new File(_resultSaveAt);
+			try(FileWriter fw= new FileWriter(fil);
+					BufferedWriter bwriter = new BufferedWriter(fw)
+				)
+			{
+				bwriter.flush();
+				bwriter.write(this.passed+"");
+				bwriter.newLine();
+				bwriter.write(this.failed+"");
+				bwriter.newLine();
+				bwriter.write(this.skipped+"");
+		
+		}
+		}
+	}
+	
+}
+
+		

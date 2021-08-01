@@ -1,0 +1,413 @@
+package utility;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+
+public class ConfigWriter {
+	public static WebDriver driver;
+	public static Properties pro;
+
+	public void writeData(String value, String valueWrite)
+
+	{
+		try {
+			// Specify the path
+			File src = new File("./Configuration/config.property");
+
+			// Convert into input stream
+			FileWriter writer = new FileWriter(src);
+ 
+			// Create Properties class object to read properties file
+			pro = new Properties();
+			pro.setProperty(value, valueWrite);
+			// Load file so we can use into our script
+			pro.store(writer, value);
+
+		} catch (Exception e) {
+
+			System.out.println("Exception is : " + e.getMessage());
+		}
+
+	}
+
+	public String getBrowser()
+
+	{
+		return pro.getProperty("aiw.selectBrowser");
+	}
+
+	public String getBrowserF()
+
+	{
+		return pro.getProperty("aiw.selectBrowserF");
+	}
+
+	public String getCustomerURL()
+
+	{
+		return pro.getProperty("navigate.to.url");
+	}
+
+	public String getChromeDriverPath()
+
+	{
+		return pro.getProperty("aiw.chromedriverpath");
+	}
+
+	public String getUsername()
+
+	{
+		return pro.getProperty("user.name");
+	}
+
+	public String getPassword()
+
+	{
+		return pro.getProperty("user.password");
+	}
+	
+	public String getWelcomeMessage()
+
+	{
+		return pro.getProperty("welcome.message");
+	}
+
+	// Sign up page Elements starts here
+	public String getFirstname() {
+		return pro.getProperty("aiw.customer.firstname");
+	}
+
+	public String getlastname() {
+		return pro.getProperty("aiw.customer.lastname");
+	}
+
+	public String getEmailAddress() {
+		return pro.getProperty("aiw.customer.emailaddress");
+	}
+
+	public String getSPassword() {
+		return pro.getProperty("aiw.customer.spassword");
+	}
+
+	public String getCountry() {
+		return pro.getProperty("aiw.customer.countrydrpdown");
+	}
+
+	public String getISDCode() {
+		return pro.getProperty("aiw.customer.country.Code");
+	}
+
+	public String getCompany() {
+		return pro.getProperty("aiw.customer.company");
+	}
+
+	public String getPhone() {
+		return pro.getProperty("aiw.customer.phone");
+	}
+
+	public String getLivecustomerdays() {
+		return pro.getProperty("aiw.livecustomer.day");
+	}
+
+	public String getForgotPasswordEmailID() // Forgot password Wrong Email Id.
+	{
+		return pro.getProperty("aiw.forgot.pwd.wrong.email.id");
+	}
+
+	public String getForgotPasswordValidationText() // Text on validation prompt for Wrong Email Id.
+	{
+		return pro.getProperty("aiw.forgot.password.validation.text");
+	}
+
+	public String getForgotPasswordCorrectEmailID() // Forgot password Correct Email Id.
+	{
+		return pro.getProperty("aiw.forgot.pwd.correct.email.id");
+	}
+
+	public String getFBUsername() {
+		return pro.getProperty("aiw.fbusername");
+	}
+
+	public String getFBUserpwd() {
+		return pro.getProperty("aiw.fbpwd");
+	}
+
+	// Gmail Google SignIn page Elements are below.
+	public String getGmailLogIn_EMailTextBox() // To Pass Email-Id in Email text box on Gmail Login Page.
+	{
+		return pro.getProperty("Gmail_EmailId");
+	}
+
+	public String getGMailLogIn_PasswordTextBox() // To Enter Password in Password text box on Gmail Login Page.
+	{
+		return pro.getProperty("Gmail_Password");
+	}
+
+	public String getGMailURL() // Enter Google URL in Browser.
+	{
+		return pro.getProperty("Gmail_URL");
+	}
+
+	public String getAiMediaNewSignupEMailSubject() {
+		return pro.getProperty("Ai-Media_NewSignupMail_Subject");
+	}
+
+	public String getCreditcardno() {
+		return pro.getProperty("aiw.credicardno");
+	}
+
+	public String getExpirymonth() {
+		return pro.getProperty("aiw.cardexpirymonth");
+	}
+
+	public String getExpiryYear() {
+		return pro.getProperty("aiw.cardexpiryyear");
+	}
+
+	public String getCVV() {
+		return pro.getProperty("aiw.CVV");
+	}
+
+	public String getmanualconfigpageurl()
+
+	{
+		return pro.getProperty("aiw.manualconfigpurl");
+	}
+
+	public String getmanualconfigserverurl()
+
+	{
+		return pro.getProperty("aiw.manualconfigsurl");
+	}
+
+	public String getmanualconfigstreamkey()
+
+	{
+		return pro.getProperty("aiw.manualconfigskey");
+	}
+
+	public String getmediaTxt()
+
+	{
+		return pro.getProperty("aiw.mdia.txt");
+
+	}
+
+	public String getmediaTxtblank()
+
+	{
+		return pro.getProperty("aiw.mdia.txtblank");
+
+	}
+
+	public String getmediamp4()
+
+	{
+		return pro.getProperty("aiw.mdia.mp4");
+
+	}
+
+	public String getPasswordSmallVerification() {
+		return pro.getProperty("aiw.Password.SmallVerification");
+	}
+
+	public String getEmailSmallVerification() {
+		return pro.getProperty("aiw.Email.SmallVerification");
+	}
+
+	public String getIsdCodetxtbox() {
+		return pro.getProperty("aiw.IsdCodeValue");
+	}
+
+	public String getPhoneNotxtbox() {
+		return pro.getProperty("aiw.PhoneNoValue");
+	}
+
+	public String getLogin_txtbox() {
+		return pro.getProperty("aiw.Login.txtbox"); // Find Email txtbox for (LiveCustomer_WrongLoginISDPhone).
+	}
+
+	public String getPasswd_txtbox() {
+		return pro.getProperty("aiw.Passwd.txtbox"); // Find Passwd txtbox for (LiveCustomer_WrongLoginISDPhone).
+	}
+
+	public String getLogin_butn() {
+		return pro.getProperty("aiw.Login.butn"); // Find loginbutn for (LiveCustomer_WrongLoginISDPhone).
+	}
+
+	public String getNoOfDayscount() {
+		return pro.getProperty("aiw.getNoOfDayscount");
+	}
+
+	public String ChangeQA() {
+		return pro.getProperty("aiw.ChangePortal");
+	}
+
+	public String getQACustomerURL() {
+		return pro.getProperty("aiw.QACustomer.URL");
+	}
+
+	public String getaiwCaptionerURL() 
+	{
+		return pro.getProperty("aiwCaptionerURL");
+	}
+	public String getCaptioner_email_ID() {
+		return pro.getProperty("Captioner_email_ID");
+	}
+
+	public String getCaptioner_psw() {
+		return pro.getProperty("Captioner_psw");
+	}
+
+	public String getPD_Firstname() {
+		return pro.getProperty("PD_FirstName");
+	}
+
+	public String PD_LastName() {
+		return pro.getProperty("PD_LastName");
+	}
+
+	public String getPD_Phone() {
+		return pro.getProperty("PD_Phone");
+	}
+
+	public String getPD_Suburb() {
+		return pro.getProperty("PD_Suburb");
+	}
+
+	public String getAboutMe() {
+		return pro.getProperty("AboutMe");
+	}
+
+	public String getCurrentPassword() {
+		return pro.getProperty("CurrentPassword");
+	}
+
+	public String getConfirmPassword() {
+		return pro.getProperty("ConfirmPassword");
+	}
+
+	public String getaiwQACustomerURL()
+	{
+		return pro.getProperty("aiwQACustomerURL");
+	}
+
+	public String getsignuppageurl()
+	{
+		return pro.getProperty("getCustomerURL");
+	}
+	
+	public String getfbcustomerUsername()
+	{
+		return pro.getProperty("aiw.fbcustomer.username");
+		
+	}
+	public String getfbcustomerPassword()
+	{
+		
+		return pro.getProperty("aiw.fbcustomer.password");
+	}
+	public String getlivecustomerUsername()
+	{
+		return pro.getProperty("livecustomerUsername");
+	}
+	public String getlivecustomerPassword()
+	{
+		return pro.getProperty("livecustomerPassword");
+	}
+	public String getNewlivecustomerUsername()
+	{
+		return pro.getProperty("NewlivecustomerUsername");
+	}
+	public String getNewlivecustomerPassword()
+	{
+		return pro.getProperty("NewlivecustomerPassword");
+	}
+	public String offlineorderspageurl()
+
+	{
+		return pro.getProperty("aiw.offlineorders.url");
+	}
+	public String getofflineorderdropboxusername()  
+	{
+		return pro.getProperty("getofflineorderdropboxusername");
+	}
+	public String getofflineorderboxpassword()
+	{
+		return pro.getProperty("getofflineorderboxpassword");  
+	}
+	public String getofflineorderboxusername()
+	{
+		return pro.getProperty("getofflineorderboxusername");
+	}
+	public String getofflineorderdropboxpassword()
+
+	{
+		return pro.getProperty("aiw.dropbox.password");
+	
+	}
+	
+
+	public String getofflineordergooglepassword()
+	{
+		return pro.getProperty("getofflineordergooglepassword");
+	}
+	public String getofflineordercloudusername()
+	{
+		return pro.getProperty("getofflineordercloudusername");
+	}
+	public String getofflineordercloudpassword()
+	{
+		return pro.getProperty("getofflineordercloudpassword");
+	}
+	
+	public String getWrongFBUsername()                
+	{
+		return pro.getProperty("aiw.Wrongfbusername"); // For Login with wrong UserName 
+	}
+	public String getWrongFBUserpwd()                
+	{
+		return pro.getProperty("aiw.Wrongfbpwd"); //// For Login with wrong Password
+	}
+	
+	public String getofflineordergoogleusername()
+	{
+		return pro.getProperty("getofflineordergoogleusername");
+}
+	
+	public String RunOnStage()
+	{
+		return pro.getProperty("RunOnStage");		
+	}
+		
+	public String getAUCountry()
+	{
+		return pro.getProperty("aiw.customer.AUcountrydrpdown");
+	}
+	public String getofflinecustomerUrl()
+	{
+		return pro.getProperty("getofflinecustomerUrl");
+}public String getruntimecustomeremail()
+{
+	return pro.getProperty("NewRuntimeUser");
+}
+public String getStageCustomerURL() {
+	return pro.getProperty("aiw.StageCustomer.URL");
+}
+public String getGmailSIgnUpEmailAddress() {
+	return pro.getProperty("aiw.GmailSIgnUp_customer.emailaddress");  // Pass Gmail ID.
+}
+public String getGmailEmailID_AtRunTime() {
+	return pro.getProperty("aiw.RuntimeUserEmail.NewGmailClient"); // Pick saved run time Email id.
+}
+
+
+
+}
+
+
+

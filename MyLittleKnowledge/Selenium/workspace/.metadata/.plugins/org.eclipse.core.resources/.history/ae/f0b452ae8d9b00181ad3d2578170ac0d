@@ -1,0 +1,96 @@
+package utility;
+
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
+
+public class TestStatistics extends TestListenerAdapter
+{
+	String ResultSaveAt, HistoryFolderLocation;
+	MyTestresultsHealthcheck rs ;
+	
+	@Override	
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+		ResultSaveAt = context.getCurrentXmlTest().getParameter("ResultSaveAt");
+		HistoryFolderLocation = context.getCurrentXmlTest().getParameter("HistoryFolderLocation");
+		if(rs == null) {
+			rs = new MyTestresultsHealthcheck(ResultSaveAt);
+		}
+	}
+	
+	@Override
+	public void onTestSuccess(ITestResult context) {
+		// TODO Auto-generated method stubr
+		
+		rs.incrementpassed();
+		System.out.println(rs.getpassed());
+		System.out.println(rs.totalTests());
+	
+	}
+	
+	@Override
+	public void onTestFailure(ITestResult context) {
+		rs.incrementfailed();
+		System.out.println(rs.getfailed());
+		System.out.println(rs.totalTests());
+	}
+
+
+	@Override
+	public void onTestSkipped(ITestResult context) {
+		// TODO Auto-generated method stub
+		rs.incrementskipped();
+		System.out.println(rs.getskipped());
+		System.out.println(rs.totalTests());		
+	}
+
+	@Override
+	public void onFinish(ITestContext arg0) {		
+		try
+		{
+			rs.CreateTestResultFile();
+			this.copyFile();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private void copyFile() throws IOException
+	{
+		Date date = new Date();  
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+	    String strDate= formatter.format(date).toString();  
+	    System.out.println(strDate);  
+
+
+	    File directory = new File(".\\test-output");
+		File[] subdirs = directory.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+		for (File dir : subdirs) {
+			System.out.println("Directory: " + dir.getName());
+			if(dir.getName().equals("html"))
+			{	Files.createDirectories(Paths.get("C:\\AIW-Selenium-Reports"+HistoryFolderLocation+"\\History\\"+strDate));
+				File destDir1 = new File("C:\\AIW-Selenium-Reports"+HistoryFolderLocation+"\\History\\"+strDate);
+				File destDir2 = new File("C:\\AIW-Selenium-Reports"+HistoryFolderLocation+"\\html");
+				
+				FileUtils.copyDirectory(dir, destDir1);
+			    FileUtils.copyDirectory(dir, destDir2);
+			}
+		}
+	}
+}
+  
+  

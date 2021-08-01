@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Parabank Test Cases]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test thread-count="5" name="Test 2(failed)">
+    <classes>
+      <class name="ParaBank_TestCases.AccountCreationTest_Savings">
+        <methods>
+          <include name="GetReport"/>
+          <include name="setup"/>
+          <include name="quitdriver"/>
+          <include name="ParaBank_CustomerSavingsTypeCreation"/>
+          <include name="TearDown"/>
+          <include name="StartReport"/>
+        </methods>
+      </class> <!-- ParaBank_TestCases.AccountCreationTest_Savings -->
+    </classes>
+  </test> <!-- Test 2(failed) -->
+</suite> <!-- Failed suite [Parabank Test Cases] -->

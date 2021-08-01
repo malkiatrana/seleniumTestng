@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Parabank_Test_Cases" class="navigator-link">
+              <span class="suite-name border-passed">Parabank Test Cases</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Parabank_Test_Cases" class="navigator-link ">
+                    <span>D:\MyLittleKnowledge\Selenium\workspace\LittleKnowledgeWorkSpace\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Parabank_Test_Cases" class="navigator-link ">
+                    <span class="test-stats">3 tests</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Parabank_Test_Cases" class="navigator-link ">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Parabank_Test_Cases" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Parabank_Test_Cases" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Parabank_Test_Cases" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Parabank_Test_Cases" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">3 methods,   3 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Parabank_Test_Cases" class="hide-methods passed suite-Parabank_Test_Cases"> (hide)</a> <!-- hide-methods passed suite-Parabank_Test_Cases -->
+                      <a href="#" panel-name="suite-Parabank_Test_Cases" class="show-methods passed suite-Parabank_Test_Cases"> (show)</a> <!-- show-methods passed suite-Parabank_Test_Cases -->
+                    </span>
+                    <div class="method-list-content passed suite-Parabank_Test_Cases">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parabank_Test_Cases" title="ParaBank_TestCases.BillTransaction" class="method navigator-link" hash-for-method="ParaBank_BillPayTransaction">ParaBank_BillPayTransaction</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parabank_Test_Cases" title="ParaBank_TestCases.AccountCreationTest_Checking" class="method navigator-link" hash-for-method="ParaBank_CustomerCheckingTypeCreation">ParaBank_CustomerCheckingTypeCreation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parabank_Test_Cases" title="ParaBank_TestCases.AccountCreationTest_Savings" class="method navigator-link" hash-for-method="ParaBank_CustomerSavingsTypeCreation">ParaBank_CustomerSavingsTypeCreation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Parabank_Test_Cases -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Parabank_Test_Cases" class="panel Parabank_Test_Cases">
+          <div class="suite-Parabank_Test_Cases-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">ParaBank_TestCases.BillTransaction</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ParaBank_BillPayTransaction">
+                  </a> <!-- ParaBank_BillPayTransaction -->
+                  <span class="method-name">ParaBank_BillPayTransaction</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parabank_Test_Cases-class-passed -->
+          <div class="suite-Parabank_Test_Cases-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">ParaBank_TestCases.AccountCreationTest_Savings</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ParaBank_CustomerSavingsTypeCreation">
+                  </a> <!-- ParaBank_CustomerSavingsTypeCreation -->
+                  <span class="method-name">ParaBank_CustomerSavingsTypeCreation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parabank_Test_Cases-class-passed -->
+          <div class="suite-Parabank_Test_Cases-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">ParaBank_TestCases.AccountCreationTest_Checking</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ParaBank_CustomerCheckingTypeCreation">
+                  </a> <!-- ParaBank_CustomerCheckingTypeCreation -->
+                  <span class="method-name">ParaBank_CustomerCheckingTypeCreation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parabank_Test_Cases-class-passed -->
+        </div> <!-- panel Parabank_Test_Cases -->
+        <div panel-name="test-xml-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">D:\MyLittleKnowledge\Selenium\workspace\LittleKnowledgeWorkSpace\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Parabank Test Cases&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;org.uncommons.reportng.HTMLReporter&quot;/&gt;
+    &lt;listener class-name=&quot;org.uncommons.reportng.JUnitXMLReporter&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test 1&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;ParaBank_TestCases.AccountCreationTest_Checking&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test 1 --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test 2&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;ParaBank_TestCases.AccountCreationTest_Savings&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test 2 --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test 3&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;ParaBank_TestCases.BillTransaction&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test 3 --&gt;
+&lt;/suite&gt; &lt;!-- Parabank Test Cases --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Parabank Test Cases</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Test 1 (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">Test 2 (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">Test 3 (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Parabank Test Cases</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Parabank Test Cases</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Parabank_Test_Cases');
+function tableData_Parabank_Test_Cases() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(3);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'ParaBank_CustomerCheckingTypeCreation')
+data.setCell(0, 2, 'ParaBank_TestCases.AccountCreationTest_Checking')
+data.setCell(0, 3, 23555);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'ParaBank_CustomerSavingsTypeCreation')
+data.setCell(1, 2, 'ParaBank_TestCases.AccountCreationTest_Savings')
+data.setCell(1, 3, 21600);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'ParaBank_BillPayTransaction')
+data.setCell(2, 2, 'ParaBank_TestCases.BillTransaction')
+data.setCell(2, 3, 17961);
+window.suiteTableData['Parabank_Test_Cases']= { tableData: data, tableDiv: 'times-div-Parabank_Test_Cases'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-Parabank_Test_Cases">
+              </div> <!-- times-div-Parabank_Test_Cases -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Parabank Test Cases</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Parabank_Test_Cases" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">ParaBank_TestCases.BillTransaction</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">StartReport</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">ParaBank_TestCases.AccountCreationTest_Checking</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">100 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">ParaBank_CustomerCheckingTypeCreation</span>
+                <span class="method-start">11110 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">GetReport([TestResult name=ParaBank_CustomerCheckingTypeCreation status=SUCCESS method=AccountCreationTest_Che...)</span>
+                <span class="method-start">34668 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">quitdriver</span>
+                <span class="method-start">34681 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">ParaBank_TestCases.AccountCreationTest_Savings</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">34873 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">ParaBank_CustomerSavingsTypeCreation</span>
+                <span class="method-start">46206 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">GetReport([TestResult name=ParaBank_CustomerSavingsTypeCreation status=SUCCESS method=AccountCreationTest_Savi...)</span>
+                <span class="method-start">67809 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">quitdriver</span>
+                <span class="method-start">67812 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">ParaBank_TestCases.BillTransaction</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">68177 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">ParaBank_BillPayTransaction</span>
+                <span class="method-start">79799 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">GetReport([TestResult name=ParaBank_BillPayTransaction status=SUCCESS method=BillTransaction.ParaBank_BillPayT...)</span>
+                <span class="method-start">97762 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">quitdriver</span>
+                <span class="method-start">97764 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="configuration-suite after">
+                <span class="method-name">TearDown</span>
+                <span class="method-start">98119 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>

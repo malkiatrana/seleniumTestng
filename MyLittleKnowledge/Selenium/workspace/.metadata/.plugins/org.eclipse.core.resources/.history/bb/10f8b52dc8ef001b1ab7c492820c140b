@@ -1,0 +1,34 @@
+package utility;
+
+public class Wait {
+	  public static T UntilSuccess<T>(
+	            Func<T> statement, int timeoutInSeconds, int pollingInMilliseconds = 500, string message = "")
+	        {
+	            var wait = new DefaultWait<object>(false, new SystemClock());
+	            wait.Timeout = TimeSpan.FromSeconds(timeoutInSeconds);
+	            wait.PollingInterval = TimeSpan.FromMilliseconds(pollingInMilliseconds);
+	            wait.Message = message;
+	            wait.IgnoreExceptionTypes(typeof(Exception));
+	            try
+	            {
+	                return wait.Until(f =>
+	                {
+	                    try
+	                    {
+	                        return statement();
+	                    }
+	                    catch (Exception ex)
+	                    {
+	                        Log.Test.DebugFormat("This attempt failed for: {0}", ex.Message);
+	                        throw;
+	                    }
+	                });
+	            }
+	            catch (WebDriverTimeoutException ex)
+	            {
+	                Log.Test.DebugFormat("The final attempt failed for: {0}, InnerException: {1}", ex.Message, ex.InnerException);
+	                // Raising System.TimeoutException instead of more specific WebDriverTimeoutException
+	                throw new System.TimeoutException(ex.Message, ex.InnerException);
+	            }
+	        }
+}

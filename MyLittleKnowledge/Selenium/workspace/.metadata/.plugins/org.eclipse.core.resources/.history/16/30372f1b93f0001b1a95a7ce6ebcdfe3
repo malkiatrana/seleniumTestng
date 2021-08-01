@@ -1,0 +1,75 @@
+package APITesting;
+
+import static org.junit.Assert.assertThat;
+
+import org.apache.xalan.lib.sql.QueryParameter;
+import org.json.simple.JSONObject;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.sun.tools.javac.comp.Check;
+
+import APITestingPost.postState;
+import APITestingPost.posts;
+import static io.restassured.RestAssured.given;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.ExtractableResponse;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import io.restassured.specification.RequestSpecification;
+import utility.Reports;
+/**
+ * @author DR87
+ *
+ */
+
+public class JSONPostRequest{
+	
+	//========= GET    /posts
+	
+	@Test
+	public void Test_01() {
+		
+		/*ResponseBody resp = given().
+				accept(ContentType.JSON).
+				contentType(ContentType.JSON).
+	                    //when().get("https://parabank.parasoft.com/parabank/services/bank/login/john/demo");
+				body("{\r\n" +"   \"fromAccountId\": 13566,\r\n"
+                 		+ " \"toAccountId\": \"13344\",\r\n\""
+                 		+ " \"amount\": \"5\",\r\n"+  "}"  ).
+                 post("https://parabank.parasoft.com/parabank/services/bank/transfer");
+		System.out.println("Get Response is: " + resp.asString());*/
+		
+		
+	/*	RestAssured.baseURI = "https://parabank.parasoft.com/parabank/services/bank/transfer";
+		RestAssured.given().body("{\r\n"
+				+ "    \"fromAccountId\": \"13122\",\r\n"
+				+ "    \"toAccountId\": \"13344\",\r\n"
+				+ "    \"amount\": \"4\"\r\n"
+				+ "}").post().then().log().all().assertThat().statusCode(201);
+		}*/
+	
+	//RestAssured.baseURI = "https://parabank.parasoft.com/parabank/services/bank/transfer";
+		String s =
+		RestAssured.given().queryParam("fromAccountId", 13122).queryParam("toAccountId", 13344).queryParam("amount", "5")
+	.accept(ContentType.JSON).
+	post("https://parabank.parasoft.com/parabank/services/bank/transfer").
+	then().
+	statusCode(200).
+	log().body().toString();
+	}
+		/*RequestSpecification request=  RestAssured.given();
+		request.header("Content-Type", "application/json");
+		JSONObject json = new JSONObject();
+		//json.put("fromAccountId", "13122"); 
+		json.put("accountId", "13344");
+		json.put("amount", "5");
+		request.body(json.toJSONString());
+		Response rsopne=  request.post("https://parabank.parasoft.com/parabank/services/bank/withdraw");
+		int code = rsopne.getStatusCode();
+		System.out.println("RESPONSE CODE: "+code);
+		Assert.assertEquals(code, 201);*/
+		
+}

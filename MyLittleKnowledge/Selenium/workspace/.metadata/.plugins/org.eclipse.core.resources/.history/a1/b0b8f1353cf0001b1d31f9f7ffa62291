@@ -1,0 +1,90 @@
+package AIW_Customer_Pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.testng.annotations.Test;
+import utility.ConfigReader;
+
+/**
+ * @author kunal.sharma
+ *
+ */
+public class Manual_ConfigBooking {
+	
+		ConfigReader config;
+		WebDriver driver;
+
+		
+		@Test
+		public Manual_ConfigBooking(WebDriver ldriver) {
+			this.driver = ldriver;
+		}
+		
+		// click edit
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnEditCurrentBooking']/img")
+		WebElement Editlive_Button;
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnChangeDestination']")
+		WebElement Changedes_Button;
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnAddDestination']")
+		WebElement Adddes_Button;
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='manualConfiguraton']/span")
+		WebElement Manual_Button;
+
+	
+		@FindBy(how = How.XPATH, using = ".//*[@id='txtPageURL']")
+		WebElement Pageurl_Text;
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='txtServerURL']")
+		WebElement Serverurl_Text;
+
+		@FindBy(how = How.XPATH, using ="//div[2]/input[3]")// ".//*[@id='txtStreamKey']")
+		WebElement Streamkey_Text;
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnNext']")
+				WebElement Done_Button;
+		
+
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnSave']")
+		WebElement Sav_Button;
+
+		public void manualconfig() throws InterruptedException {
+			config = new ConfigReader();
+
+			// Start
+
+			Editlive_Button.click();
+			Thread.sleep(5000);
+
+			Changedes_Button.click();
+			Thread.sleep(5000);
+
+			Adddes_Button.click();
+			Thread.sleep(5000);
+
+			Manual_Button.click();
+			Thread.sleep(5000);
+
+            Pageurl_Text.sendKeys(config.getmanualconfigpageurl());
+			Thread.sleep(5000);
+
+			Serverurl_Text.sendKeys(config.getmanualconfigserverurl());
+			Thread.sleep(5000);
+			Actions action = new Actions(driver);
+			action.moveToElement(Streamkey_Text).perform();
+			Streamkey_Text.sendKeys(config.getmanualconfigstreamkey());
+			Thread.sleep(5000);
+
+			Done_Button.click();
+			Thread.sleep(5000);
+
+			Sav_Button.click();
+			Thread.sleep(10000);
+
+		}
+	}

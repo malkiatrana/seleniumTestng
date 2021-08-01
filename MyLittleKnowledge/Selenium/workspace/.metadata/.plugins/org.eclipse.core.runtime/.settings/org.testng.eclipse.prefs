@@ -1,0 +1,5 @@
+AIWorld_Healthcheck.disabledListeners=true
+AIWorld_Healthcheck.outdir=test-output
+AIWorld_TestScripts.disabledListeners=true
+AIWorld_TestScripts.outdir=test-output
+eclipse.preferences.version=1

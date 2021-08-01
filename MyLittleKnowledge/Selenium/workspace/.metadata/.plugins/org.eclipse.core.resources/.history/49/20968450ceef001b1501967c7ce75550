@@ -1,0 +1,191 @@
+package APITesting;
+
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+
+
+import utility.Reports;
+import APITestingPost.postState;
+
+import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
+
+import static com.jayway.restassured.RestAssured.*;
+/**
+ * @author DR87
+ *
+ */
+public class GetRequest extends Reports {
+
+	//@Test
+	public void Test_01() {
+		Response resp = given().
+		        param("username", "admin").
+		        param("password", "@dm1n@123"). 
+		      
+				when().
+				post("http://116.193.163.70:8000/api/api-token-auth/");
+		
+		
+		System.out.println("Status Code: "+resp.getStatusCode() +" Status Line: "+resp.getStatusLine());
+		System.out.println("API Response: "+resp.asString());
+		Assert.assertEquals(resp.getStatusCode(), 200);
+		
+	}
+
+	// @Test
+	public void Test_02() {
+		given().param("zip", "9404")
+				.param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("http://samples.openweathermap.org/data/2.5/weather")
+				.then().assertThat().statusCode(200);
+
+	}
+	
+	//@Test
+	public void Test_03() {
+		 
+		 String countryReport = 
+				when().
+				get("https://stage-api-aiw.ai-live.com/api/countries").
+				then().
+				contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+				extract().
+				path("[0].Name");
+		 		System.out.println("Country Name: " +countryReport);
+	
+	}
+
+	//@Test
+	public void Test_04() {
+		
+		Response resp = 
+				when().
+				get("https://stage-api-aiw.ai-live.com/api/countries");
+		System.out.println("Status Code: "+resp.getStatusCode());
+		System.out.println("API Response: "+resp.asString());
+		 
+		 String actualCountryReport = resp.				
+				then().
+				contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+				extract().
+				path("[0].Name");
+		 System.out.println("Country Name: " +actualCountryReport);
+		 
+		 String expectedCountryReport = null;
+		 
+		 if(actualCountryReport.equalsIgnoreCase(expectedCountryReport))
+		 {
+			 System.out.println("Test Case Pass");
+		 } else
+		 {
+		    System.out.println("Test Case Fail");
+		 }
+	
+	}
+	
+	//============================== Getting values (lat and long) 
+	  //  @Test
+		public void Test_05() {
+			 
+			 Response resp = given().
+				        param("id", "2172797").
+				        param("appid", "b6907d289e10d714a6e88b30761fae22"). 
+				    when().
+					get("http://samples.openweathermap.org/data/2.5/weather");
+			 System.out.println("Response: " +resp);
+			 
+			String reportById = resp.				
+					then().
+					contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+					extract().
+					path("weather[0].description");
+			 System.out.println("Description: " +reportById);
+			 
+			String lat = String.valueOf(resp.		//Convert values into string from floating point		
+					then().
+					contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+					extract().
+					path("coord.lat"));
+			 System.out.println("Latitude: " +lat);			
+			 
+			String lon = String.valueOf(resp.		//Convert values into string from floating point				
+					then().
+					contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+					extract().
+					path("coord.lon"));
+			 System.out.println("Longitude: " +lon);		 
+		
+		}
+		
+	//	@Test
+		public void Test_06() {
+			postState post = new postState();
+			
+			post.setID("4");
+	        post.setState("Chandigarh");
+	        
+			 
+			 Response resp = given().
+				        param("username", "admin").
+				        param("password", "@dm1n@123"). 
+				    when().
+				    post("http://116.193.163.70:8000/api/api-token-auth/");
+			 System.out.println("Response: " +resp.asString());
+			 
+			String tokenId = resp.				
+					then().
+					contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+					extract().
+					path("token");
+			 System.out.println("Token: " +tokenId);
+			 
+			 Response response	= given().auth().oauth2(tokenId).body(post).contentType(ContentType.JSON).
+             post("http://116.193.163.70:8000/api/State/");
+			 
+	
+
+	 System.out.println("POST Response is: "  +response.asString());	 
+		}
+		
+		@Test
+		public void Test_07() {
+			Report = extent.createTest("checkValiduser", "Test Case 01");
+			postState post = new postState();
+			
+			post.setID("3");
+	        post.setState("Karnataka");
+	        			 
+			 Response resp = given().
+				        param("username", "admin").
+				        param("password", "@dm1n@123"). 
+				    when().
+				    post("http://116.193.163.70:8000/api/api-token-auth/");
+			 System.out.println("Response: " +resp.asString());
+			 
+			String tokenId = resp.				
+					then().
+					contentType(ContentType.JSON).  //Verify that data you have received is of JSON type or not
+					extract().
+					path("token");
+			 System.out.println("Token: " +tokenId);
+			 
+			 Map<String, String> header = new HashMap<String, String>();
+			 header.put("Authorization", "JWT " +tokenId);
+			 
+			 Response response = given().headers(header).when().
+                     body(post).
+                     contentType(ContentType.JSON).
+                     post("http://116.193.163.70:8000/api/State/");
+		
+	 System.out.println("POST Response is: " + response.asString() +"Status: " +response.getStatusCode());	
+	 Assert.assertEquals(response.getStatusCode(), 200);
+	 
+		}
+}

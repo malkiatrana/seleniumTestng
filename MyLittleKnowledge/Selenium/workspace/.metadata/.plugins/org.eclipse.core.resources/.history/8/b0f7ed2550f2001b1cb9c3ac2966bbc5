@@ -1,0 +1,71 @@
+package AIW_Customer_Pages;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.testng.annotations.Test;
+
+import utility.ConfigReader;
+
+/**
+ * @author kunal.sharma
+ * 
+
+public class Custlogin {
+	ConfigReader config;
+	WebDriver driver;
+
+	@Test
+	public Custlogin(WebDriver ldriver) {
+		this.driver = ldriver;
+	}
+
+	@FindBy(how = How.ID, using = "txtEmail")
+	WebElement Loginaddress_Textbox;
+
+	@FindBy(how = How.ID, using = "txtpwd")
+	WebElement Loginpassword_Textbox;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='Login']/div/div/form/div[5]/button")
+	WebElement customerlogin_button;
+	
+	@FindBy(how = How.CSS, using = "#btnLive")
+	WebElement liveOrderNow_button;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id=\"a_live\"]")
+	WebElement LiveJob_Button;
+
+	
+	public void custlogintest() throws Exception {
+		 Logger log = Logger.getLogger(Logger.class.getName());
+		 PropertyConfigurator.configure("Configuration/Log4j.properties");
+		 config = new ConfigReader();
+		 Loginaddress_Textbox.sendKeys(config.getNewlivecustomerUsername());
+		 
+		 log.info(" Get live cusotomer Username");
+		 Loginpassword_Textbox.sendKeys(config.getNewlivecustomerPassword());
+		 log.info(" Get the live cusotomer Password ");
+		 customerlogin_button.click();
+		 log.info(" Login button clicked");
+		 Thread.sleep(10000);
+		 
+		 try {	
+	     
+			 liveOrderNow_button.isDisplayed();
+	         liveOrderNow_button.click();
+	         log.info(" Live Order Now button is clicked ");
+		     Thread.sleep(5000);
+		 } catch (NoSuchElementException e) {
+			 log.info("Account selector page is unavailable");
+		 }
+		 
+		 LiveJob_Button.click();
+		 log.info(" Navigated to live customer portal ");
+		 Thread.sleep(15000);
+		
+	}
+} */

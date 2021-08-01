@@ -1,0 +1,71 @@
+package AIW_LiveCustomer_Testcase;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import AIW_LiveCustomer_Pages.LiveCommonUser_Login;
+import AIW_LiveCustomer_Pages.LiveCustomer_BookNowPage;
+import utility.BrowserFactory;
+import utility.ConfigReader;
+import utility.Reports;
+import utility.Utilityfunctions;
+
+public class LiveCustomer_AddPreparationMaterialManualConfiguration extends Reports {
+
+	ConfigReader config;
+@BeforeClass
+	public void setup()
+	{
+		config = new ConfigReader();
+		// This will launch browser and specific url
+		driver = BrowserFactory.startBrowser(config.getBrowser(),
+				                    config.getCustomerURL());
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		System.out.println("Setup is Ready");
+	}
+@Test(priority=0)
+	public void LiveCustomer_Booking_TC0050() throws InterruptedException, Exception {
+	
+		config = new ConfigReader();
+		Report = extent.createTest("Adding Preparation material with Manual Configuration", "LiveCustomer_Booking_TC050");
+		Reporter.log("Verify that user is able to “Save” preparatory material whenever manual configuration is given.");
+	    //Created Page Object using Page Factory
+		LiveCommonUser_Login login_page = PageFactory
+				.initElements(driver, LiveCommonUser_Login.class);
+	    //Call the method of the Common User class
+		login_page.commonuserlogin();
+		login_page.clickonlivevideos();
+		LiveCustomer_BookNowPage lbooknowpage= PageFactory
+				.initElements(driver, LiveCustomer_BookNowPage.class);
+		lbooknowpage.Customer_bookingwithManualconfiguration();
+		Utilityfunctions utility = PageFactory
+				.initElements(driver, Utilityfunctions.class);
+	    //Call the method of the Common User class
+		utility.checkPageIsReady();
+		login_page.clickonlivevideos();
+		lbooknowpage.Addpreparatorymaterial();
+		System.out.println("Testcase 1st passed successfully");
+	
+	}
+@Test(priority=1)
+public void LiveCustomer_Booking_TC005() throws InterruptedException, Exception {
+	config = new ConfigReader();
+	Reporter.log("User is able to do booking with “Manual Configuration”  and then change destination to FB live video.");
+	Report = extent.createTest("Change from Manual Configuration to Facebook Destination", "LiveCustomer_Booking_TC05");
+    //Created Page Object using Page Factory
+	LiveCommonUser_Login login_page = PageFactory
+			.initElements(driver, LiveCommonUser_Login.class);
+    //Call the method of the Common User class
+	login_page.clickonlivevideos();
+	LiveCustomer_BookNowPage lbooknowpage= PageFactory
+			.initElements(driver, LiveCustomer_BookNowPage.class);
+	Utilityfunctions utility = PageFactory
+			.initElements(driver, Utilityfunctions.class);
+    //Call the method of the Common User class
+	utility.checkPageIsReady();
+	lbooknowpage.AddFBDestination();
+	System.out.println("Testcase passed successfully");
+}
+}

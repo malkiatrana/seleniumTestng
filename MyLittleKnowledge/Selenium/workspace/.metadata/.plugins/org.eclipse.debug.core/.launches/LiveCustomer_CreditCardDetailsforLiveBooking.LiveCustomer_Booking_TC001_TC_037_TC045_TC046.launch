@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.testng.eclipse.launchconfig">
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.testng.remote.RemoteTestNG"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="AIWorld_TestScripts"/>
+    <mapAttribute key="org.testng.eclipse.ALL_CLASS_METHODS">
+        <mapEntry key="AIW_Customer_LiveBooking_TestCases.LiveCustomer_CreditCardDetailsforLiveBooking" value="LiveCustomer_Booking_TC001_TC_037_TC045_TC046"/>
+    </mapAttribute>
+    <listAttribute key="org.testng.eclipse.CLASS_TEST_LIST">
+        <listEntry value="AIW_Customer_LiveBooking_TestCases.LiveCustomer_CreditCardDetailsforLiveBooking"/>
+    </listAttribute>
+    <listAttribute key="org.testng.eclipse.METHOD_TEST_LIST">
+        <listEntry value="LiveCustomer_Booking_TC001_TC_037_TC045_TC046"/>
+    </listAttribute>
+    <listAttribute key="org.testng.eclipse.PACKAGE_TEST_LIST"/>
+    <stringAttribute key="org.testng.eclipse.PRE_DEFINED_LISTENERS" value=""/>
+    <intAttribute key="org.testng.eclipse.TYPE" value="4"/>
+</launchConfiguration>

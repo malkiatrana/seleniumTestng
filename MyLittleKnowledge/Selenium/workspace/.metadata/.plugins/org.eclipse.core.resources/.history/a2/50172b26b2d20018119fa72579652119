@@ -1,0 +1,115 @@
+package AIW_Customer_LiveBooking_Pages;
+
+
+import java.util.Calendar;
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import utility.ConfigReader;
+import utility.ConfigValidationsReader;
+import utility.Utility;
+
+public class LiveCustomer_SelectDuration {
+	ConfigReader config;
+	ConfigValidationsReader configvalidations;
+	WebDriver driver;
+
+	public LiveCustomer_SelectDuration(WebDriver ldriver) {
+		this.driver = ldriver;
+	}
+
+	String NumberDaysAft ;
+	Date date = new Date();
+	Calendar cal = Calendar.getInstance();
+
+	
+	// book now
+		@FindBy(how = How.XPATH, using = ".//*[@id='btnBookNow']")
+		WebElement Book_Now;
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='drpHour']")
+	WebElement Duration_Dropdown;
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='drpDurationMin']")
+	WebElement Duration_MinDropdown;
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='frmRequestCaptioning']/div/div[2]/div[3]/div[2]/span/span")
+	WebElement Duration_MinDropdownHourLabelWarning;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='frmRequestCaptioning']/div/div[2]/div[3]/div[3]/span[2]/span")
+	WebElement Duration_MinDropdownMinuLabelWarning;
+	
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='frmRequestCaptioning']/div/div[2]/div[3]/div[3]/span[3]")
+	WebElement Duration_MinDropdownMinuLabelWarningAfterselectingMorethanmaximum;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='drpHour']/option[1]")
+	WebElement Duration_HourDropdownFirstElement;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='drpDurationMin']/option[1]")
+	WebElement Duration_MinDropdownFirstElement;
+
+	//Function for the start time 
+	public void WatermarksonDuration() throws Exception {
+		Logger log = Logger.getLogger(Logger.class.getName());
+		PropertyConfigurator.configure("Configuration/Log4j.properties");
+		config = new ConfigReader();
+	configvalidations= new ConfigValidationsReader();
+	Utility.fluentwait(driver.findElement(By.id("asdfdsf")));
+		Book_Now.click();
+		WebDriverWait wait=new WebDriverWait(driver, 50);
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+		Utility.fluentwait(Duration_HourDropdownFirstElement);
+		String get_hourwatermark=Duration_HourDropdownFirstElement.getText();
+        String get_minwatermark=Duration_MinDropdownFirstElement.getText();
+
+		Assert.assertTrue(get_hourwatermark.contains("hh")&& get_minwatermark.contains("mm"), "Watermark displayed successfully");
+		log.info("The watermarks are displayed successfully for Start time fields");
+	}
+	public void deselectingduration()
+	{
+		WebDriverWait wait=new WebDriverWait(driver, 50);
+		WebElement	Hour_Dropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='drpHour']")));
+		WebElement	Minute_Dropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='drpDurationMin']")));
+	Select hoursdropdown = new Select(Hour_Dropdown);
+	hoursdropdown.selectByVisibleText("1 hour");
+	Select minutedropdown = new Select(Minute_Dropdown);
+	minutedropdown.selectByVisibleText("30 minutes");
+	hoursdropdown.selectByVisibleText("hh");
+	Assert.assertTrue(Duration_MinDropdownHourLabelWarning.getText().contains(configvalidations.HoursareRequired()));	
+	minutedropdown.selectByVisibleText("mm");
+	Assert.assertTrue(Duration_MinDropdownMinuLabelWarning.getText().contains(configvalidations.MinutesareRequired()));	
+	}
+	public void valuesselectduration()
+	{WebDriverWait wait=new WebDriverWait(driver, 50);
+		WebElement	Hour_Dropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='drpHour']")));
+	WebElement	Minute_Dropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='drpDurationMin']")));
+		Select hoursdropdown = new Select(Hour_Dropdown);
+		Select minutedropdown = new Select(Minute_Dropdown);
+	hoursdropdown.selectByVisibleText("1 hour");
+	minutedropdown.selectByVisibleText("30 minutes");
+	hoursdropdown.selectByVisibleText("3 hours");
+	minutedropdown.selectByVisibleText("30 minutes");
+	}
+	
+public void durationcheckselectwarning()
+{
+	WebDriverWait wait=new WebDriverWait(driver, 50);
+	WebElement	Minute_Dropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='drpDurationMin']")));
+	Select minutedropdown = new Select(Minute_Dropdown);
+	Assert.assertTrue(Duration_MinDropdownMinuLabelWarningAfterselectingMorethanmaximum.getText().contains(configvalidations.Durationcheck()));	
+	minutedropdown.selectByVisibleText("0 minutes");
+}
+	}

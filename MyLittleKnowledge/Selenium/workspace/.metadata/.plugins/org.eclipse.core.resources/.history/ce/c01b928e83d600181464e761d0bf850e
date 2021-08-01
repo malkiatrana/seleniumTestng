@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LiveCustomer-Booking" >
+     <listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+   
+      <listener class-name="utility.TestStatistics">
+          <parameter name="ResultSaveAt" value=".//Reports//ResultCount_LiveCustomerBooking.txt"></parameter>
+              <parameter name="ResultSaveAtQA" value=".//Reports//ResultCount_QALiveCustomerBooking.txt"></parameter>
+      </listener>
+    
+  </listeners>
+   <test name="Verify that Live Booking tab opened successfully">
+    <classes>
+      <class name="AIW_Customer_LiveBooking_TestCases.LiveCustomer_DurationSelect"/>
+    </classes>
+    </test> 
+   
+</suite> <!-- LiveCustomer_Booking -->
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+package AIW_Offline_Customer_Pages;
+
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.testng.annotations.Test;
+
+import utility.ConfigReader;
+
+/**
+ * @author kunal.sharma
+ * 
+ 
+public class AIW_Offline_Login {
+	ConfigReader config;
+	WebDriver driver;
+
+	@Test
+	public AIW_Offline_Login(WebDriver ldriver) {
+		this.driver = ldriver;
+	}
+
+	@FindBy(how = How.XPATH, using = ".//*[@id=\"a_recorded\"]")
+	WebElement RecordedJob_Button;
+	
+	@FindBy(how = How.ID, using = "txtEmail")
+	WebElement Loginaddress_Textbox;
+
+	@FindBy(how = How.ID, using = "txtpwd")
+	WebElement Loginpassword_Textbox;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='Login']/div/div/form/div[5]/button")
+	WebElement customerlogin_button;
+	
+	@FindBy(how = How.ID, using = "btnOffline")
+	WebElement offlineOrderNow_button;
+	
+	public void offlinelogintest() throws Exception {
+
+		config = new ConfigReader();
+		
+		Loginaddress_Textbox.sendKeys(config.getlivecustomerUsername());
+		Thread.sleep(5000);
+		
+		Loginpassword_Textbox.sendKeys(config.getlivecustomerPassword());
+		Thread.sleep(5000);
+		
+		customerlogin_button.click();
+		Thread.sleep(5000);
+		
+		 try {	
+		     
+			 offlineOrderNow_button.isDisplayed();
+			 offlineOrderNow_button.click();
+	        
+		     Thread.sleep(5000);
+		 } catch (NoSuchElementException e) {
+			
+		 }
+		 
+		RecordedJob_Button.click();
+		Thread.sleep(3000);
+	}
+
+}
+*/

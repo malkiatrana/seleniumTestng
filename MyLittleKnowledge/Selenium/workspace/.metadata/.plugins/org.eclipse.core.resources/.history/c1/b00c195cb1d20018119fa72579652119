@@ -1,0 +1,49 @@
+package AIW_Customer_LiveBooking_TestCases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import utility.BrowserFactory;
+import utility.ConfigReader;
+import utility.Reports;
+import AIW_Customer_LiveBooking_Pages.LiveCommonUser_Login;
+import AIW_Customer_LiveBooking_Pages.LiveCustomer_SelectDuration;
+
+public class LiveCustomer_DurationSelect  extends Reports {
+
+	ConfigReader config;
+
+	@BeforeTest
+	public void setup()
+
+	{
+		config = new ConfigReader();
+		// This will launch browser and specific url
+		driver = BrowserFactory.startBrowser(config.getBrowser(),
+				                    config.getCustomerURL());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println("Setup is Ready");
+	}
+
+	@Test
+	public void LiveCustomer_Booking_TC020() throws InterruptedException, Exception {
+	
+		config = new ConfigReader();
+		Report = extent.createTest("Live Customer Booking Duration", "LiveCustomer_Booking_TC020");
+		Reporter.log("Verify that “Duration” is displaying  hh,mm watermarks by default");
+	
+		// Created Page Object using Page Factory
+		LiveCommonUser_Login login_page = PageFactory
+				.initElements(driver, LiveCommonUser_Login.class);
+	     //Call the method of the Common User class
+		login_page.commonuserlogin();
+		login_page.clickonlivevideos();
+		LiveCustomer_SelectDuration lduration= PageFactory
+				.initElements(driver, LiveCustomer_SelectDuration.class);
+		lduration.WatermarksonDuration();
+		System.out.println("Testcase passed successfully");
+	}
+}

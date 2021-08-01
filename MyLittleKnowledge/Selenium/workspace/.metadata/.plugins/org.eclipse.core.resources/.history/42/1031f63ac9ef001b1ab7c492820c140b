@@ -1,0 +1,43 @@
+package utility;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+
+import org.apache.poi.ss.formula.functions.T;
+import org.openqa.selenium.remote.server.SystemClock;
+
+import groovy.swing.impl.DefaultAction;
+
+
+public class Wait {
+	  public static T UntilSuccess<T>(
+	            Func<T> statement, int timeoutInSeconds, int pollingInMilliseconds = 500, string message = "")
+	        {
+	            var wait = new DefaultAction<object>(false, new SystemClock());
+	            wait.Timeout = Timestamp.setSeconds(timeoutInSeconds);
+	            wait.PollingInterval = Time.FromMilliseconds(pollingInMilliseconds);
+	            wait.Message = message;
+	            wait.IgnoreExceptionTypes(typeof(Exception));
+	            try
+	            {
+	                return wait.Until(f =>
+	                {
+	                    try
+	                    {
+	                        return statement();
+	                    }
+	                    catch (Exception ex)
+	                    {
+	                        Log.Test.DebugFormat("This attempt failed for: {0}", ex.Message);
+	                        throw;
+	                    }
+	                });
+	            }
+	            catch (WebDriverTimeoutException ex)
+	            {
+	                Log.Test.DebugFormat("The final attempt failed for: {0}, InnerException: {1}", ex.Message, ex.InnerException);
+	                // Raising System.TimeoutException instead of more specific WebDriverTimeoutException
+	                throw new System.TimeoutException(ex.Message, ex.InnerException);
+	            }
+	        }
+}

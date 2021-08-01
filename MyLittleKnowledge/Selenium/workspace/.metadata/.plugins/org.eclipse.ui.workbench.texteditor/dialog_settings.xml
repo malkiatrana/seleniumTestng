@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="Smith"/>
+		<item key="casesensitive" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="false"/>
+		<list key="findhistory">
+			<item value="smith"/>
+			<item value="john"/>
+			<item value="CHECKING"/>
+			<item value="Account"/>
+			<item value="Account.CHECKING"/>
+			<item value="aiw.livecustomer.password"/>
+			<item value="aiw.livecustomer.username"/>
+			<item value="first"/>
+			<item value="btnSubmitInvoice"/>
+			<item value="naveen"/>
+			<item value="aiw.fbcustomer.password"/>
+			<item value="aiw.fbcustomer.username"/>
+			<item value="aiw.customer.url"/>
+			<item value="getCustomerURL"/>
+			<item value="readResult"/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="336"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_X_ORIGIN" value="9"/>
+		<item key="DIALOG_Y_ORIGIN" value="186"/>
+	</section>
+</section>

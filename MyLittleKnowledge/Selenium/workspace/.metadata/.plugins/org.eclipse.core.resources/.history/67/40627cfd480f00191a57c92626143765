@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Customer Contact Us">
+     <listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+   <listener class-name="utility.SkipSuite"/>
+      <listener class-name="utility.TestStatistics">
+          <parameter name="ResultSaveAt" value=".//Reports//ResultCount_CustomerContactUsTandC.txt"></parameter>
+              <parameter name="ResultSaveAtQA" value=".//Reports//ResultCount_QACustomerContactUsTandC.txt"></parameter>
+      </listener>
+  
+  </listeners>
+  <test name="Verify that user is able to open Contact Us page">
+    <classes>
+      <class name="AIW_Customer_ContactUs_Support_TandC_TestCases.OpenContactUs"/>
+    </classes>
+  </test> <!-- Test -->
+  <test name="Verify that user is able to open Contact Us page">
+    <classes>
+      <class name="AIW_Customer_ContactUs_Support_TandC_TestCases.OpenContactUs"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

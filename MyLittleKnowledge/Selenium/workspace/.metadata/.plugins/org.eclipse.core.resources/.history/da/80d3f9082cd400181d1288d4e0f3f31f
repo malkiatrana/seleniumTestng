@@ -1,0 +1,169 @@
+package AIW_Customer_LiveBooking_Pages;
+
+import java.util.Iterator;
+import java.util.Set;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import utility.ConfigReader;
+import utility.ConfigValidationsReader;
+import utility.Reports;
+import utility.Utility;
+import utility.Utilityfunctions;
+
+public class LiveCommonUser_Login extends Reports {
+	ConfigReader config;
+	WebDriver driver;
+
+	@Test
+	public LiveCommonUser_Login(WebDriver ldriver) {
+		this.driver = ldriver;
+	}
+
+	@FindBy(how = How.ID, using = "txtEmail")
+	WebElement Loginaddress_Textbox;
+
+	@FindBy(how = How.ID, using = "txtpwd")
+	WebElement Loginpassword_Textbox;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='Login']/div/div/form/div[5]/button")
+	WebElement customerlogin_button;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"a_live\"]")
+	WebElement LiveJob_Button;
+
+	@FindBy(how = How.XPATH, using = "//form/div/a/img")
+	WebElement Facebook_Button;
+
+	@FindBy(how = How.ID, using = "email")
+	WebElement Facebook_Textbox;
+
+	@FindBy(how = How.ID, using = "pass")
+	WebElement Facebook_pwd;
+
+	@FindBy(how = How.ID, using = "loginbutton")
+	WebElement Facebook_login;
+
+	@FindBy(how = How.ID, using = "btnLive")
+	WebElement AccountselectorIDLive;
+	
+	
+
+	// This function is used to login into application for live videos
+	public void commonuserlogin() throws Exception {
+		Utilityfunctions utility = PageFactory
+				.initElements(driver, Utilityfunctions.class);
+		Logger log = Logger.getLogger(Logger.class.getName());
+		PropertyConfigurator.configure("Configuration/Log4j.properties");
+		config = new ConfigReader();
+		ConfigValidationsReader configvalidations;
+		configvalidations = new ConfigValidationsReader();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.elementToBeClickable(Loginaddress_Textbox));
+		Loginaddress_Textbox.sendKeys(config.getUsername());
+	log.info("Get live cusotomer Username");
+		Loginpassword_Textbox.sendKeys(config.getPassword());
+		log.info("Get the live cusotomer Password ");
+		customerlogin_button.click();
+		log.info("Login button clicked");
+        utility.checkPageIsReady();
+	      try {	
+			     
+			 AccountselectorIDLive.isDisplayed();
+			 AccountselectorIDLive.click();
+	         log.info(" Live Order Now button is clicked ");
+	         utility.checkPageIsReady();
+	      } catch (NoSuchElementException e) {
+				 log.info("Account selector page is unavailable");
+			 }
+	  	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]")));
+	}
+
+	@SuppressWarnings("unchecked")
+	public void clickonlivevideos() throws InterruptedException {
+		Logger log = Logger.getLogger(Logger.class.getName());
+		PropertyConfigurator.configure("Configuration/Log4j.properties");
+		Utilityfunctions util= new Utilityfunctions();
+		util.fluentwait(LiveJob_Button);
+		new Actions(driver).moveToElement(LiveJob_Button).perform();
+		LiveJob_Button.click();
+		log.info("Navigated to live customer portal ");
+//		Thread.sleep(8000);
+				
+	}
+
+	public void facebook_commonuserlogin() throws Exception {
+		ConfigValidationsReader configvalidations;
+		Utilityfunctions utility = PageFactory
+				.initElements(driver, Utilityfunctions.class);
+		configvalidations = new ConfigValidationsReader();WebDriverWait wait = new WebDriverWait(driver, 450);
+		wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
+		wait.until(ExpectedConditions.elementToBeClickable(Facebook_Button));
+		Logger log = Logger.getLogger(Logger.class.getName());
+		PropertyConfigurator.configure("Configuration/Log4j.properties");
+		config = new ConfigReader();
+		Facebook_Button.click();
+		String subWindowHandler = null;
+		String parentwindow = driver.getWindowHandle();
+		Set<String> handles = driver.getWindowHandles(); // get all window handles
+		Iterator<String> iterator = handles.iterator();
+		while (iterator.hasNext()) {
+			subWindowHandler = iterator.next();
+		}
+		driver.switchTo().window(subWindowHandler); //switch to popup window
+
+		Utility.fluentwait(Facebook_pwd);
+
+		new Actions(driver).moveToElement(Facebook_pwd).perform();
+		Facebook_Textbox.sendKeys(config.getFBUsername());
+		log.info("Get live cusotomer Username");
+		Facebook_pwd.sendKeys(config.getFBUserpwd());
+		log.info("Get the live cusotomer Password ");
+		Facebook_login.click();
+		
+		log.info("Login button clicked");
+		driver.switchTo().window(parentwindow);
+	try {
+				
+			
+			if(driver.findElement(By.xpath("//*[@id='platformDialogForm']/div[2]/button[1]")).isDisplayed())
+			{
+				driver.findElement(By.xpath("//*[@id='platformDialogForm']/div[2]/button[1]")).click();
+			// Switch back to original browser (first window)
+			}
+		
+			
+
+		}
+			catch (NoSuchElementException e) {
+				e.printStackTrace();
+			}
+			Thread.sleep(15000);
+//		 By loadingImage = By.xpath("//div/div/img");
+//		 wait.until(ExpectedConditions.invisibilityOfElementLocated(loadingImage));
+	         Actions actions = new Actions(driver);
+	         try
+	         {
+	           actions.moveToElement(AccountselectorIDLive).click().perform();
+	         }
+	         catch (NoSuchElementException ex)
+	         {
+	        	 ex.printStackTrace();
+	         }
+		 Thread.sleep(8000);
+		      
+		
+	}
+
+}
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;AIWorld_TestScripts/chromedriver_win32/chromedriver.exe&apos; to &apos;chromedriver3.exe&apos;" description="Rename resource &apos;chromedriver.exe&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="chromedriver_win32/chromedriver.exe" name="chromedriver3.exe" stamp="1538567541857" updateReferences="true"/>
+</session>

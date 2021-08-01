@@ -1,0 +1,58 @@
+package AIW_Customer_ContactUs_Support_TandC_TestCases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import AIW_Customer_ContactUs_Support_TandC_Pages.AccountSettings;
+import AIW_Customer_LiveBooking_Pages.LiveCommonUser_Login;
+import utility.BrowserFactory;
+import utility.ConfigReader;
+import utility.Reports;
+import utility.SkipSuite.NonStage;
+
+public class OpenAccountSettings extends Reports {
+	ConfigReader config;
+	@NonStage
+	@BeforeTest
+		public void setup()
+		{
+			config = new ConfigReader();
+			// This will launch browser and specific url
+			driver = BrowserFactory.startBrowser(config.getBrowser(),config.getCustomerURL());
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			System.out.println("Setup is Ready");
+		}
+	
+	@Test
+		public void AccountSettings_TC_006() throws InterruptedException, Exception {
+			config = new ConfigReader();
+			Report = extent.createTest("OpenAccountSettingspage", "Customer_AccountSettings_TC_005");
+			Reporter.log("Verify that user is able to open the Contact Us page.");
+	        //Call the method of the Common User class
+			LiveCommonUser_Login login_page = PageFactory
+					.initElements(driver, LiveCommonUser_Login.class);
+		    //Call the method of the Common User class
+			login_page.commonuserlogin();
+			AccountSettings accountsetting= PageFactory
+				.initElements(driver, AccountSettings.class);
+			accountsetting.AccountSettings_Page();
+			System.out.println("Testcase passed successfully");
+	}
+	@Test
+	public void AccountSettings_TC_007() throws InterruptedException, Exception {
+		config = new ConfigReader();
+		Report = extent.createTest("OpenAccountSettingspage", "Customer_AccountSettings_TC_007");
+		Reporter.log("Verify that user is able Edit the Account Settings.");
+       AccountSettings accountsetting= PageFactory
+			.initElements(driver, AccountSettings.class);
+		accountsetting.AccountSettings_Page();
+		System.out.println("Testcase passed successfully");
+}
+	
+}
+
+
